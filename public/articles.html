@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;700;800&family=Tajawal:wght=300;400;500;700;800&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -41,7 +41,7 @@
         .article-content h2 { margin-top: 2.5rem; margin-bottom: 1rem; color: #102a43; font-weight: 700; font-size: 1.5rem; border-inline-start: 4px solid #d4af37; padding-inline-start: 0.75rem; text-align: start; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased selection:bg-gold-400 selection:text-white">
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-gold-400 selection:text-white flex flex-col min-h-screen">
 
     <nav class="fixed w-full z-50 bg-corporate-900/95 backdrop-blur border-b border-corporate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,7 +55,7 @@
                                 <path d="M25 45 L35 55 L55 30" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
                             </g>
                             <text x="150" y="135" font-family="'Tajawal', sans-serif" font-weight="800" font-size="44" fill="#ffffff" text-anchor="middle">حماية الصيت</text>
-                            <text x="150" y="175" font-family="'Montserrat', sans-serif" font-weight="800" font-size="25" fill="#d4af37" letter-spacing="2" text-anchor="middle">PRESTIGEGUARD</text>
+                            <text x="150" y="175" font-family="'Montserrat', sans-serif" font-weight="800" font-size="25" fill="#d4af37" letter-spacing="2" text-anchor="middle">PRESTIGEGUARDS</text>
                         </svg>
                     </a>
                 </div>
@@ -143,7 +143,7 @@
         </div>
     </div>
 
-    <div id="hub-view">
+    <div id="hub-view" class="flex-grow">
         <section class="bg-corporate-900 pt-32 md:pt-44 pb-16 md:pb-20 text-center relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-corporate-900 opacity-50"></div>
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -165,13 +165,13 @@
         </main>
     </div>
 
-    <div id="reader-view" class="hidden">
+    <div id="reader-view" class="hidden flex-grow">
         <header class="bg-corporate-900 pt-36 md:pt-44 pb-12 md:pb-16 relative">
             <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
                 <span id="read-category" class="text-gold-400 text-sm font-bold uppercase tracking-wider block mb-3"></span>
                 <h1 id="read-title" dir="auto" class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 text-start md:text-center"></h1>
                 <div class="text-gray-400 text-xs sm:text-sm flex justify-center items-center gap-2">
-                    <span><i data-lucide="calendar" class="w-4 h-4 inline ml-1"></i><span id="read-date"></span></span>
+                    <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4"></i><span id="read-date"></span></span>
                     <span>•</span>
                     <span>بقلم فريق البحوث التقنية</span>
                 </div>
@@ -186,6 +186,20 @@
 
             <article id="read-body" class="article-content bg-white rounded-2xl p-5 sm:p-8 md:p-12 shadow-sm border border-gray-100">
                 </article>
+
+            <div class="mt-8 bg-corporate-900 border-2 border-gold-400 rounded-2xl p-6 sm:p-8 text-center shadow-xl relative overflow-hidden">
+                <div class="absolute inset-0 bg-radial-gradient from-corporate-800 to-corporate-900 opacity-30"></div>
+                <div class="relative z-10 space-y-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-white">هل تواجه أزمة رقمية أو هجوماً يهدد سمعتك؟</h3>
+                    <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto">تواصل معنا الآن بشكل فوري للحصول على تحليل تقني واستجابة سيبرانية مباشرة لحظر التهديدات وحذف الإساءات خوارزمياً.</p>
+                    <div class="pt-2">
+                        <a href="/#contact" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-500 text-corporate-900 font-extrabold px-8 py-4 rounded-xl shadow-lg hover:shadow-gold-400/20 transform hover:-translate-y-0.5 transition-all text-base sm:text-lg">
+                            <i data-lucide="shield-alert" class="w-5 h-5"></i>
+                            احصل على استشارة سرية عاجلة
+                        </a>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -198,7 +212,7 @@
     </footer>
 
     <script>
-        // Database connection logic from articles.html
+        // تحديد مسارات الاتصال بالسيرفر تلقائياً
         const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000'
             : window.location.origin;
@@ -220,6 +234,7 @@
             lucide.createIcons();
         }
 
+        // جلب المقالات من قاعدة البيانات السحابية
         async function fetchArticles() {
             const grid = document.getElementById('articles-grid');
             grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">جاري جلب آخر المقالات والبيانات من السحابة...</p>';
@@ -235,6 +250,8 @@
             }
         }
 
+        // بناء شبكة المقالات وإصلاح تداخل النصوص والعناصر البرمجية بجانب بعضها
+        // تم الاعتماد علىโครงสร้าง Flexbox النظيف مع مسافات (gaps) مرنة لمنع الالتصاق والتداخل الهيكلي
         function renderArticlesGrid() {
             const grid = document.getElementById('articles-grid');
             grid.innerHTML = '';
@@ -250,13 +267,13 @@
                         <div>
                             <div class="h-44 bg-corporate-800 flex items-center justify-center p-6 text-center relative overflow-hidden">
                                 <div class="absolute inset-0 bg-gradient-to-tr from-corporate-900 to-corporate-500 opacity-90"></div>
-                                <i data-lucide="${art.icon || 'file-text'}" class="w-10 h-10 text-gold-400 relative z-10 mb-2"></i>
+                                <i data-lucide="${art.icon || 'file-text'}" class="w-10 h-10 text-gold-400 relative z-10"></i>
                             </div>
                             <div class="p-5">
-                                <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
-                                    <span><i data-lucide="calendar" class="w-3 h-3 inline ml-1"></i>${art.date}</span>
-                                    <span>•</span>
-                                    <span>${art.category}</span>
+                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3 flex-wrap">
+                                    <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5"></i>${art.date}</span>
+                                    <span class="text-gray-300">•</span>
+                                    <span class="bg-corporate-50 text-corporate-800 px-2 py-0.5 rounded font-medium">${art.category}</span>
                                 </div>
                                 <h3 dir="auto" class="text-lg font-bold text-corporate-900 mb-2 hover:text-gold-500 transition-colors text-start">
                                     <a href="javascript:void(0)" onclick="openArticle('${art._id}')">${art.title}</a>
@@ -276,6 +293,7 @@
             lucide.createIcons();
         }
 
+        // فتح المقال الفردي
         function openArticle(id) {
             const article = globalArticles.find(a => a._id === id);
             if (!article) return;
@@ -305,6 +323,7 @@
             lucide.createIcons();
         }
 
+        // رفع مقال جديد لقاعدة البيانات السحابية
         async function saveNewArticle() {
             const title = document.getElementById('post-title').value.trim();
             const category = document.getElementById('post-category').value;
@@ -345,6 +364,7 @@
             }
         }
 
+        // بناء قائمة إدارة وحذف المقالات داخل لوحة التحكم
         function renderAdminArticlesList() {
             const list = document.getElementById('admin-articles-list');
             list.innerHTML = '';
@@ -370,6 +390,7 @@
             lucide.createIcons();
         }
 
+        // حذف مقال نهائياً من السيرفر
         async function deleteArticle(id) {
             if(!confirm('هل أنت متأكد تماماً من رغبتك في حذف هذا المقال نهائياً من الموقع وقاعدة البيانات؟')) return;
 
@@ -389,6 +410,7 @@
             }
         }
 
+        // فتح لوحة الإدارة والتحقق المباشر من الهوية عبر الـ API الخاص بكلمة مرورك الجديدة المحددة
         async function toggleAdminPanel() {
             const panel = document.getElementById('admin-panel');
             if (panel.classList.contains('hidden')) {
@@ -396,10 +418,11 @@
                 if (!password) return;
 
                 try {
+                    // الاتصال بالتحقق الخلفي للمستخدم باستخدام بريدك المحدد وكلمة مرورك الجديدة ZokLok@2011
                     const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: "admin@prestigeguard.com", password })
+                        body: JSON.stringify({ email: "admin@prestigeguard.com", password: password })
                     });
                     const data = await res.json();
 
@@ -409,10 +432,10 @@
                         renderAdminArticlesList();
                         alert('🔐 تم التحقق بنجاح! لوحة التحكم مهيأة بالكامل الآن ومجهّزة بأدوات الحذف والنشر.');
                     } else {
-                        alert('❌ كلمة مرور خاطئة! لا تملك صلاحية الوصول.');
+                        alert('❌ كلمة مرور خاطئة! لا تملك صلاحية الوصول لقاعدة البيانات.');
                     }
                 } catch (err) {
-                    alert('حدث خطأ في الاتصال بالخادم أثناء التحقق.');
+                    alert('حدث خطأ في الاتصال بالخادم أثناء التحقق من كلمة المرور.');
                 }
             } else {
                 panel.classList.add('hidden');
@@ -430,7 +453,7 @@
             window.scrollTo(0, 0);
         }
 
-        // Initialize App
+        // بدء تشغيل البرنامج وجلب البيانات
         fetchArticles();
         lucide.createIcons();
     </script>
