@@ -135,7 +135,8 @@ app.delete('/api/articles/:id', authenticate, requireAdmin, async (req, res) => 
 });
 
 // Fallback routing: Route all unhandled requests to index.html
-app.get('(.*)', (req, res) => {
+// Express v5 requires wildcards to have a name (like 'splat')
+app.get('/*splat', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
