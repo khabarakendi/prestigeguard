@@ -1,117 +1,224 @@
 <!DOCTYPE html>
-<html lang=\"ar\" dir=\"rtl\">
+<html lang="ar" dir="rtl">
 <head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المقالات والتقارير | Prestigeguard - إدارة المخاطر الرقمية</title>
-    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
-    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
-    <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght=400;700;800&family=Tajawal:wght=300;400;500;700;800&display=swap\" rel=\"stylesheet\">
-    <script src=\"https://cdn.tailwindcss.com\"></script>
-    <script src=\"https://unpkg.com/lucide@latest\"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: { sans: ['Tajawal', 'sans-serif'] },
                     colors: {
-                        corporate: { 50: '#f0f4f8', 100: '#d9e2ec', 500: '#334e68', 800: '#102a43', 900: '#0b1c2c' },
-                        gold: { 400: '#d4af37', 500: '#c5a028' }
+                        corporate: {
+                            50: '#f0f4f8',
+                            100: '#d9e2ec',
+                            500: '#334e68',
+                            800: '#102a43',
+                            900: '#0b1c2c',
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#c5a028',
+                        }
                     }
                 }
             }
         }
     </script>
+    <style>
+        body { font-family: 'Tajawal', sans-serif; }
+        html { scroll-behavior: smooth; }
+        .article-content p { margin-bottom: 1.5rem; color: #374151; font-size: 1.125rem; line-height: 1.85; text-align: start; }
+        .article-content h2 { margin-top: 2.5rem; margin-bottom: 1rem; color: #102a43; font-weight: 700; font-size: 1.5rem; border-inline-start: 4px solid #d4af37; padding-inline-start: 0.75rem; text-align: start; }
+    </style>
 </head>
-<body class=\"bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen\">
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-gold-400 selection:text-white">
 
-    <header class=\"bg-corporate-900 border-b border-corporate-800 text-white sticky top-0 z-50 shadow-md\">
-        <div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between\">
-            <div class=\"flex items-center gap-3\">
-                <a href=\"/\" class=\"flex items-center gap-2 group\">
-                    <span class=\"font-['Montserrat'] font-extrabold text-lg tracking-wider text-gold-400 group-hover:text-white transition-colors\">PRESTIGEGUARD</span>
-                </a>
-            </div>
-            <nav class=\"hidden md:flex items-center gap-8 text-sm font-medium\">
-                <a href=\"/\" class=\"hover:text-gold-400 transition-colors\">الرئيسية</a>
-                <button onclick=\"toggleAdminPanel()\" class=\"bg-gold-400 hover:bg-gold-500 text-corporate-900 font-bold px-4 py-2 rounded-lg transition-all flex items-center gap-2 text-xs shadow-sm\">
-                    <i data-lucide=\"lock\" class=\"w-3.5 h-3.5\"></i> لوحة الإدارة
-                </button>
-            </nav>
-        </div>
-    </header>
-
-    <main class=\"flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10\">
-        
-        <section id=\"admin-panel\" class=\"hidden mb-12 bg-white border border-yellow-200 rounded-2xl p-6 shadow-sm\">
-            <div class=\"flex justify-between items-center border-b border-gray-100 pb-4 mb-6\">
-                <div class=\"flex items-center gap-2 text-corporate-900\">
-                    <i data-lucide=\"sliders\" class=\"w-5 h-5 text-gold-400\"></i>
-                    <h2 class=\"text-xl font-bold\">لوحة الإشراف والتحكم بالمحتوى</h2>
+    <nav class="fixed w-full z-50 bg-corporate-900/95 backdrop-blur border-b border-corporate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20 md:h-24">
+                
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="/">
+                        <svg class="w-28 h-auto sm:w-36 md:w-40" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="translate(110, 0)">
+                                <path d="M40 0 L80 15 L80 45 C80 65 65 80 40 90 C15 80 0 65 0 45 L0 15 Z" fill="none" stroke="#d4af37" stroke-width="5" stroke-linejoin="round"/>
+                                <path d="M25 45 L35 55 L55 30" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            </g>
+                            <text x="150" y="135" font-family="'Tajawal', sans-serif" font-weight="800" font-size="44" fill="#ffffff" text-anchor="middle">حماية الصيت</text>
+                            <text x="150" y="175" font-family="'Montserrat', sans-serif" font-weight="800" font-size="25" fill="#d4af37" letter-spacing="2" text-anchor="middle">PRESTIGEGUARD</text>
+                        </svg>
+                    </a>
                 </div>
-                <button onclick=\"logoutAdmin()\" class=\"text-gray-500 hover:text-red-600 font-medium text-sm flex items-center gap-1 transition-colors\">
-                    <i data-lucide=\"log-out\" class=\"w-4 h-4\"></i> تسجيل الخروج
-                </button>
-            </div>
-            
-            <div class=\"grid grid-cols-1 lg:grid-cols-3 gap-8\">
-                <div class=\"lg:col-span-2 space-y-4\">
-                    <h3 class=\"font-bold text-gray-700 text-sm mb-2\">إضافة مقال أو تقرير جديد</h3>
-                    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4\">
-                        <input type=\"text\" id=\"post-title\" placeholder=\"عنوان المقال الجديد\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\">
-                        <select id=\"post-category\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\">
-                            <option>إدارة السمعة الرقمية</option>
-                            <option>الأمن السيبراني</option>
-                            <option>علاقات المستثمرين</option>
-                            <option>تقارير الاختراقات</option>
-                        </select>
-                    </div>
-                    <input type=\"text\" id=\"post-icon\" value=\"file-text\" placeholder=\"أيقونة Lucide (مثال: shield, lock, file-text)\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\">
-                    <textarea id=\"post-excerpt\" rows=\"2\" placeholder=\"مقتطف قصير يظهر في البطاقة الخارجية لمحة عامة...\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\"></textarea>
-                    <textarea id=\"post-body\" rows=\"6\" placeholder=\"نص المقال الكامل والمفصل الأساسي...\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\"></textarea>
-                    <button onclick=\"saveNewArticle()\" class=\"w-full bg-corporate-800 hover:bg-corporate-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-md text-sm flex items-center justify-center gap-2\">
-                        <i data-lucide=\"check-circle\" class=\"w-4 h-4 text-gold-400\"></i> اعتماد ونشر التقرير فوراً في السحابة
+                
+                <div class="hidden md:flex space-x-reverse space-x-6 lg:space-x-8 items-center">
+                    <a href="/" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gold-400 pb-1 text-sm font-medium transition-all">الرئيسية</a>
+                    <a href="javascript:void(0)" onclick="switchToListView()" class="text-white border-b-2 border-gold-400 pb-1 text-sm font-medium transition-all">المقالات</a>
+                    <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-gold-400 text-xs font-medium border border-gray-700 rounded px-2 py-1 transition-colors">لوحة الإدارة 🔐</button>
+                </div>
+
+                <div class="flex items-center md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
                     </button>
                 </div>
-                <div class=\"bg-gray-50 rounded-xl p-4 border border-gray-100 flex flex-col\">
-                    <h3 class=\"font-bold text-gray-700 text-sm mb-3\">إدارة وإزالة البيانات المنشورة</h3>
-                    <div id=\"admin-articles-list\" class=\"space-y-2 overflow-y-auto max-h-[360px] flex-grow pr-1\">
-                        </div>
-                </div>
             </div>
-        </section>
+        </div>
 
-        <section id=\"hub-view\" class=\"space-y-10\">
-            <div class=\"text-center max-w-2xl mx-auto space-y-3\">
-                <h1 class=\"text-3xl md:text-4xl font-extrabold text-corporate-900 tracking-tight\">المقالات المهنية والتقارير التحليلية</h1>
-                <p class=\"text-gray-500 text-sm md:text-base\">تابع أحدث الاستراتيجيات والدراسات الأمنية الصادرة عن خبراء إدارة المخاطر الرقمية وحماية الصيت المؤسسي.</p>
+        <div id="mobile-menu" class="hidden md:hidden bg-corporate-900 border-t border-corporate-800 px-4 pt-2 pb-6 space-y-3 transition-all">
+            <a href="/" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2 text-base font-medium border-b border-gray-800/50">الرئيسية</a>
+            <a href="javascript:void(0)" onclick="switchToListView(); toggleMobileMenu();" class="block text-gold-400 py-2 text-base font-bold border-b border-gray-800/50">المقالات</a>
+            <button onclick="toggleAdminPanel(); toggleMobileMenu();" class="w-full text-right text-gray-400 hover:text-gold-400 text-base font-medium py-2 block border-b border-gray-800/50">لوحة الإدارة 🔐</button>
+        </div>
+    </nav>
+
+    <div id="admin-panel" class="hidden pt-28 md:pt-36 bg-corporate-100 border-b-2 border-gold-400 px-4 sm:px-6 lg:px-8 py-8 transition-all">
+        <div class="max-w-3xl mx-auto bg-white rounded-xl p-5 md:p-8 shadow-xl border border-gray-200">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl md:text-2xl font-bold text-corporate-900 flex items-center gap-2">
+                    <i data-lucide="plus-circle" class="text-gold-500"></i> نشر مقال جديد (متصل بقاعدة البيانات)
+                </h2>
+                <button onclick="logoutAdmin()" class="text-red-500 hover:text-red-700 text-sm font-medium">تسجيل الخروج 🚪</button>
             </div>
-            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
-        </section>
-
-        <section id=\"reader-view\" class=\"hidden bg-white border border-gray-100 rounded-2xl p-6 md:p-10 shadow-sm max-w-4xl mx-auto\">
-            <button onclick=\"switchToListView()\" class=\"mb-6 inline-flex items-center gap-2 text-sm font-bold text-corporate-500 hover:text-corporate-800 transition-colors\">
-                <i data-lucide=\"arrow-right\" class=\"w-4 h-4\"></i> العودة لمركز التقارير والمقالات
-            </button>
-            <article class=\"space-y-6\">
-                <div class=\"space-y-3 border-b border-gray-100 pb-6\">
-                    <span id=\"read-category\" class=\"bg-corporate-50 text-corporate-800 text-xs font-bold px-3 py-1.5 rounded-full\"></span>
-                    <h1 id=\"read-title\" class=\"text-2xl md:text-3xl font-extrabold text-corporate-900 leading-tight text-right\"></h1>
-                    <p class=\"text-xs text-gray-400 flex items-center gap-1\"><i data-lucide=\"calendar\" class=\"w-3.5 h-3.5\"></i> <span id=\"read-date\"></span></p>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">عنوان المقال</label>
+                    <input type="text" id="post-title" dir="auto" placeholder="أدخل عنوان المقال هنا..." class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none text-base text-start">
                 </div>
-                <div id=\"read-body\" class=\"prose max-w-none text-gray-600 text-sm md:text-base leading-relaxed text-right space-y-4\">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">تصنيف المقال</label>
+                        <select id="post-category" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none">
+                            <option value="إدارة الأزمات">إدارة الأزمات</option>
+                            <option value="هندسة الخوارزميات">هندسة الخوارزميات</option>
+                            <option value="الأمن السيبراني">الأمن السيبراني</option>
+                            <option value="تقارير خاصة">تقارير خاصة</option>
+                        </select>
                     </div>
-            </article>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">أيقونة المقال المرئية</label>
+                        <select id="post-icon" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none">
+                            <option value="shield-alert">Shield (حماية وأزمات)</option>
+                            <option value="search">Search (محركات بحث وSEO)</option>
+                            <option value="eye">Eye (رصد واستخبارات)</option>
+                            <option value="lock">Lock (أمن سيبراني مغلق)</option>
+                            <option value="file-text">Document (تقرير مكتوب)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">نبذة مختصرة (تظهر في البطاقة الخارجية)</label>
+                    <input type="text" id="post-excerpt" dir="auto" placeholder="اكتب سطرين كملخص سريع للمقال..." class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none text-sm text-start">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1">نص المقال الكامل</label>
+                    <textarea id="post-body" dir="auto" rows="10" placeholder="اكتب مقالك هنا بالكامل..." class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none text-base leading-relaxed text-start"></textarea>
+                </div>
+
+                <button onclick="saveNewArticle()" class="w-full bg-corporate-800 text-white hover:bg-corporate-900 font-bold p-4 rounded-lg transition-colors flex items-center justify-center gap-2 text-base md:text-lg shadow-md">
+                    <i data-lucide="send" class="w-5 h-5 text-gold-400"></i> نشر المقال على الموقع فوراً
+                </button>
+            </div>
+
+            <div class="mt-8 pt-6 border-t-2 border-gray-100">
+                <h3 class="text-lg font-bold text-corporate-900 mb-4 flex items-center gap-2">
+                    <i data-lucide="settings" class="text-gray-500"></i> إدارة وحذف المقالات الحالية السحابية
+                </h3>
+                <div id="admin-articles-list" class="space-y-3 max-h-64 overflow-y-auto pr-1"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="hub-view">
+        <section class="bg-corporate-900 pt-32 md:pt-44 pb-16 md:pb-20 text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-corporate-900 opacity-50"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <span class="inline-block py-1 px-3 rounded-full bg-corporate-800 border border-corporate-500 text-gold-400 text-sm font-medium mb-4">
+                    المدونة الرقمية والأبحاث
+                </span>
+                <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+                    دليلك المعرفي لـ <span class="text-gold-400">حماية السمعة الرقمية</span>
+                </h1>
+                <p class="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base md:text-lg font-light">
+                    مقالات متخصصة، دراسات حالة، ونصائح أمنية من خبراء السيطرة الخوارزمية واستخبارات الويب.
+                </p>
+            </div>
         </section>
-    </main>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                </div>
+        </main>
+    </div>
+
+    <div id="reader-view" class="hidden">
+        <header class="bg-corporate-900 pt-36 md:pt-44 pb-12 md:pb-16 relative">
+            <div class="max-w-3xl mx-auto px-4 text-center relative z-10">
+                <span id="read-category" class="text-gold-400 text-sm font-bold uppercase tracking-wider block mb-3"></span>
+                <h1 id="read-title" dir="auto" class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4 text-start md:text-center"></h1>
+                <div class="text-gray-400 text-xs sm:text-sm flex justify-center items-center gap-2">
+                    <span><i data-lucide="calendar" class="w-4 h-4 inline ml-1"></i><span id="read-date"></span></span>
+                    <span>•</span>
+                    <span>بقلم فريق البحوث التقنية</span>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-3xl mx-auto px-4 py-12 md:py-16">
+            <button onclick="switchToListView()" class="text-gold-500 hover:text-corporate-800 font-medium text-sm inline-flex items-center gap-1 mb-6 transition-colors group">
+                <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
+                العودة إلى صفحة المقالات الرئيسية
+            </button>
+
+            <article id="read-body" class="article-content bg-white rounded-2xl p-5 sm:p-8 md:p-12 shadow-sm border border-gray-100">
+                </article>
+        </main>
+    </div>
+
+    <footer class="bg-corporate-900 border-t border-corporate-800 pt-12 pb-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400 text-sm">
+                &copy; 2026 Prestigeguard (حماية الصيت). جميع الحقوق محفوظة.
+            </p>
+        </div>
+    </footer>
 
     <script>
-        // Automatic runtime dynamic route sniffing resolution
+        // Database connection logic from articles.html
         const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000'
             : window.location.origin;
 
         let globalArticles = [];
+        let isMobileMenuOpen = false;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            isMobileMenuOpen = !isMobileMenuOpen;
+            if (isMobileMenuOpen) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
 
         async function fetchArticles() {
             const grid = document.getElementById('articles-grid');
@@ -143,22 +250,22 @@
                         <div>
                             <div class="h-44 bg-corporate-800 flex items-center justify-center p-6 text-center relative overflow-hidden">
                                 <div class="absolute inset-0 bg-gradient-to-tr from-corporate-900 to-corporate-500 opacity-90"></div>
-                                <i data-lucide="${art.icon || 'file-text'}" class="w-10 h-10 text-gold-400 relative z-10"></i>
+                                <i data-lucide="${art.icon || 'file-text'}" class="w-10 h-10 text-gold-400 relative z-10 mb-2"></i>
                             </div>
-                            <div class="p-5 text-right">
-                                <div class="flex items-center gap-2 text-xs text-gray-400 mb-2 justify-start flex-row-reverse">
-                                    <span>${art.date}</span>
+                            <div class="p-5">
+                                <div class="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                                    <span><i data-lucide="calendar" class="w-3 h-3 inline ml-1"></i>${art.date}</span>
                                     <span>•</span>
                                     <span>${art.category}</span>
                                 </div>
-                                <h3 dir="auto" class="text-lg font-bold text-corporate-900 mb-2 hover:text-gold-500 transition-colors">
+                                <h3 dir="auto" class="text-lg font-bold text-corporate-900 mb-2 hover:text-gold-500 transition-colors text-start">
                                     <a href="javascript:void(0)" onclick="openArticle('${art._id}')">${art.title}</a>
                                 </h3>
-                                <p dir="auto" class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">${art.excerpt}</p>
+                                <p dir="auto" class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3 text-start">${art.excerpt}</p>
                             </div>
                         </div>
-                        <div class="p-5 pt-0 text-right">
-                            <button onclick="openArticle('${art._id}')" class="text-corporate-800 font-bold text-sm inline-flex items-center gap-1 hover:text-gold-500 transition-colors group">
+                        <div class="p-5 pt-0">
+                            <button onclick="openArticle('${art._id}')" class="text-corporate-800 font-bold text-xs sm:text-sm inline-flex items-center gap-1 hover:text-gold-500 transition-colors group text-right w-fit">
                                 اقرأ المقال كاملاً 
                                 <i data-lucide="arrow-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
                             </button>
@@ -174,15 +281,22 @@
             if (!article) return;
 
             document.getElementById('read-category').innerText = article.category;
-            document.getElementById('read-title').innerText = article.title;
+            const titleEl = document.getElementById('read-title');
+            titleEl.innerText = article.title;
+            titleEl.setAttribute('dir', 'auto');
             document.getElementById('read-date').innerText = article.date;
             
             const bodyContainer = document.getElementById('read-body');
             bodyContainer.innerHTML = '';
             
-            article.bodyText.split('\n').forEach(paragraph => {
-                if(!paragraph.trim()) return;
-                bodyContainer.innerHTML += `<p dir="auto" class="mb-4">${paragraph.trim()}</p>`;
+            article.bodyText.split('\n').forEach(pText => {
+                if(pText.trim() === '') return;
+                if(pText.trim().startsWith('*')) {
+                    const cleanHeading = pText.replace('*', '').trim();
+                    bodyContainer.innerHTML += `<h2 dir="auto">${cleanHeading}</h2>`;
+                } else {
+                    bodyContainer.innerHTML += `<p dir="auto">${pText.trim()}</p>`;
+                }
             });
 
             document.getElementById('hub-view').classList.add('hidden');
@@ -194,12 +308,12 @@
         async function saveNewArticle() {
             const title = document.getElementById('post-title').value.trim();
             const category = document.getElementById('post-category').value;
-            const icon = document.getElementById('post-icon').value.trim();
+            const icon = document.getElementById('post-icon').value;
             const excerpt = document.getElementById('post-excerpt').value.trim();
             const bodyText = document.getElementById('post-body').value.trim();
 
             if (!title || !excerpt || !bodyText) {
-                alert('الرجاء تعبئة جميع الحقول المطلوبة للمقال.');
+                alert('الرجاء تعبئة العنوان، النبذة المختصرة، ونص المقال بالكامل قبل النشر!');
                 return;
             }
 
@@ -234,20 +348,30 @@
         function renderAdminArticlesList() {
             const list = document.getElementById('admin-articles-list');
             list.innerHTML = '';
+            
+            if(globalArticles.length === 0) {
+                list.innerHTML = `<p class="text-xs text-gray-400 text-center py-2">لا توجد مقالات في قاعدة البيانات لحذفها.</p>`;
+                return;
+            }
+
             globalArticles.forEach(art => {
                 list.innerHTML += `
-                    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg border gap-4 flex-row-reverse">
-                        <p dir="auto" class="text-sm font-bold text-corporate-900 truncate text-right flex-1">${art.title}</p>
-                        <button onclick="deleteArticle('${art._id}')" class="text-red-600 hover:bg-red-100 px-3 py-1 rounded text-xs font-bold transition-all">
-                            حذف
+                    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg border border-gray-200 gap-4">
+                        <div class="min-w-0 flex-1">
+                            <p dir="auto" class="text-xs md:text-sm font-bold text-corporate-900 truncate">${art.title}</p>
+                            <p class="text-[10px] text-gray-400 mt-0.5">${art.category} • ${art.date}</p>
+                        </div>
+                        <button onclick="deleteArticle('${art._id}')" class="text-red-600 hover:text-white hover:bg-red-600 border border-red-200 bg-red-50 px-3 py-1.5 rounded-md transition-all flex items-center gap-1 text-xs font-bold flex-shrink-0 shadow-sm">
+                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> حذف
                         </button>
                     </div>
                 `;
             });
+            lucide.createIcons();
         }
 
         async function deleteArticle(id) {
-            if(!confirm('هل أنت متأكد من الحذف النهائي من قاعدة البيانات؟')) return;
+            if(!confirm('هل أنت متأكد تماماً من رغبتك في حذف هذا المقال نهائياً من الموقع وقاعدة البيانات؟')) return;
 
             try {
                 const res = await fetch(`${API_BASE_URL}/api/articles/${id}`, {
