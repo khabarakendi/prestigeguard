@@ -1,16 +1,12 @@
 {
   "name": "prestigeguards-app",
   "version": "1.0.0",
-  "description": "PrestigeGuard Full-Stack Application",
-  "main": "server.js",
+  "lockfileVersion": 3,
+  "requires": true,
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",

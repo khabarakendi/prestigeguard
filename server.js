@@ -36,7 +36,13 @@ const Article = mongoose.model('Article', articleSchema);
 // ==========================================
 // 2. Database Connection & Admin Seeding
 // ==========================================
-const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://guardprestige8_db_user:dFAshTWptlHuQRG8@cluster0.88d4utm.mongodb.net/prestigeguard?retryWrites=true&w=majority";
+const MONGO_URI = process.env.MONGO_URI;
+if (!MONGO_URI) {
+    console.error('❌ FATAL ERROR: MONGO_URI is not defined in .env');
+    process.exit(1);
+}
+
+const JWT_SECRET = process.env.JWT_SECRET || 'development_fallback_secret_change_in_production';
 
 mongoose.connect(MONGO_URI)
     .then(async () => {
@@ -47,13 +53,13 @@ mongoose.connect(MONGO_URI)
         const adminExists = await User.findOne({ email: adminEmail });
         
         if (!adminExists) {
-            const hashedPassword = await bcrypt.hash("admin123", 10);
+            const hashedPassword = await bcrypt.hash(process.env.ADMIN_DEFAULT_PASSWORD || "admin123", 10);
             await User.create({
                 email: adminEmail,
                 password: hashedPassword,
                 role: 'admin'
             });
-            console.log('👤 Default admin account seeded: admin@prestigeguard.com / admin123');
+            console.log('👤 Default admin account seeded.');
         }
     })
     .catch(err => console.error('❌ MongoDB Connection Error:', err));
@@ -67,7 +73,7 @@ const authenticate = (req, res, next) => {
 
     if (!token) return res.status(401).json({ message: 'Access Denied: Token Missing' });
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    jwt.verify(token, JWT_SECRET, (err, user) => {
         if (err) return res.status(403).json({ message: 'Access Denied: Invalid Token' });
         req.user = user;
         next();
@@ -97,7 +103,7 @@ app.post('/api/auth/login', async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
-        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
+        const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, { expiresIn: '1d' });
         res.json({ token, role: user.role, email: user.email });
     } catch (error) {
         res.status(500).json({ message: 'Server error during login' });
@@ -135,7 +141,6 @@ app.delete('/api/articles/:id', authenticate, requireAdmin, async (req, res) => 
 });
 
 // Fallback routing: Route all unhandled requests to index.html
-// Express v5 requires wildcards to have a name (like 'splat')
 app.get('/*splat', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });

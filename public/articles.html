@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>المقالات والتقارير | Prestigeguard - إدارة المخاطر الرقمية</title>
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;700;800&family=Tajawal:wght=300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+    <link href="[https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap](https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap)" rel="stylesheet">
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <script src="[https://unpkg.com/lucide@latest](https://unpkg.com/lucide@latest)"></script>
 
     <script>
         tailwind.config = {
@@ -49,7 +49,7 @@
                 
                 <div class="flex-shrink-0 flex items-center">
                     <a href="/">
-                        <svg class="w-28 h-auto sm:w-36 md:w-40" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-28 h-auto sm:w-36 md:w-40" viewBox="0 0 300 240" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
                             <g transform="translate(110, 0)">
                                 <path d="M40 0 L80 15 L80 45 C80 65 65 80 40 90 C15 80 0 65 0 45 L0 15 Z" fill="none" stroke="#d4af37" stroke-width="5" stroke-linejoin="round"/>
                                 <path d="M25 45 L35 55 L55 30" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -161,7 +161,7 @@
 
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
             <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                </div>
+            </div>
         </main>
     </div>
 
@@ -185,7 +185,7 @@
             </button>
 
             <article id="read-body" class="article-content bg-white rounded-2xl p-5 sm:p-8 md:p-12 shadow-sm border border-gray-100">
-                </article>
+            </article>
 
             <div class="mt-8 bg-corporate-900 border-2 border-gold-400 rounded-2xl p-6 sm:p-8 text-center shadow-xl relative overflow-hidden">
                 <div class="absolute inset-0 bg-radial-gradient from-corporate-800 to-corporate-900 opacity-30"></div>
@@ -212,7 +212,6 @@
     </footer>
 
     <script>
-        // تحديد مسارات الاتصال بالسيرفر تلقائياً
         const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000'
             : window.location.origin;
@@ -234,7 +233,6 @@
             lucide.createIcons();
         }
 
-        // جلب المقالات من قاعدة البيانات السحابية
         async function fetchArticles() {
             const grid = document.getElementById('articles-grid');
             grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">جاري جلب آخر المقالات والبيانات من السحابة...</p>';
@@ -250,41 +248,31 @@
             }
         }
 
-        // بناء شبكة المقالات وإصلاح تداخل النصوص والعناصر البرمجية بجانب بعضها
-        // تم الاعتماد علىโครงสร้าง Flexbox النظيف مع مسافات (gaps) مرنة لمنع الالتصاق والتداخل الهيكلي
         function renderArticlesGrid() {
             const grid = document.getElementById('articles-grid');
             grid.innerHTML = '';
-            
-            if(globalArticles.length === 0) {
-                grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">لا توجد مقالات منشورة حالياً.</p>';
-                return;
-            }
+            grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"; 
 
             globalArticles.forEach(art => {
                 grid.innerHTML += `
-                    <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col justify-between">
-                        <div>
-                            <div class="h-44 bg-corporate-800 flex items-center justify-center p-6 text-center relative overflow-hidden">
-                                <div class="absolute inset-0 bg-gradient-to-tr from-corporate-900 to-corporate-500 opacity-90"></div>
-                                <i data-lucide="${art.icon || 'file-text'}" class="w-10 h-10 text-gold-400 relative z-10"></i>
-                            </div>
-                            <div class="p-5">
-                                <div class="flex items-center gap-3 text-xs text-gray-500 mb-3 flex-wrap">
-                                    <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5"></i>${art.date}</span>
-                                    <span class="text-gray-300">•</span>
-                                    <span class="bg-corporate-50 text-corporate-800 px-2 py-0.5 rounded font-medium">${art.category}</span>
-                                </div>
-                                <h3 dir="auto" class="text-lg font-bold text-corporate-900 mb-2 hover:text-gold-500 transition-colors text-start">
-                                    <a href="javascript:void(0)" onclick="openArticle('${art._id}')">${art.title}</a>
-                                </h3>
-                                <p dir="auto" class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3 text-start">${art.excerpt}</p>
-                            </div>
+                    <article class="bg-white rounded-xl shadow-sm border border-gray-100 flex flex-col h-full hover:shadow-lg transition-all duration-300">
+                        <div class="h-44 bg-corporate-800 flex items-center justify-center p-6 text-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-corporate-900 to-corporate-500 opacity-90"></div>
+                            <i data-lucide="${art.icon || 'file-text'}" class="w-10 h-10 text-gold-400 relative z-10"></i>
                         </div>
-                        <div class="p-5 pt-0">
-                            <button onclick="openArticle('${art._id}')" class="text-corporate-800 font-bold text-xs sm:text-sm inline-flex items-center gap-1 hover:text-gold-500 transition-colors group text-right w-fit">
-                                اقرأ المقال كاملاً 
-                                <i data-lucide="arrow-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
+                        <div class="p-5 flex-grow">
+                            <div class="flex items-center gap-3 text-xs text-gray-500 mb-3 flex-wrap">
+                                <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5"></i>${art.date}</span>
+                                <span class="bg-corporate-50 text-corporate-800 px-2 py-0.5 rounded font-medium">${art.category}</span>
+                            </div>
+                            <h3 dir="auto" class="text-lg font-bold text-corporate-900 mb-2 hover:text-gold-500 transition-colors text-start">
+                                ${art.title}
+                            </h3>
+                            <p dir="auto" class="text-gray-600 text-sm leading-relaxed text-start">${art.excerpt}</p>
+                        </div>
+                        <div class="p-5 pt-0 mt-auto">
+                            <button onclick="openArticle('${art._id}')" class="text-corporate-800 font-bold text-sm inline-flex items-center gap-1 hover:text-gold-500 transition-colors">
+                                اقرأ المقال كاملاً <i data-lucide="arrow-left" class="w-4 h-4"></i>
                             </button>
                         </div>
                     </article>
@@ -293,7 +281,6 @@
             lucide.createIcons();
         }
 
-        // فتح المقال الفردي
         function openArticle(id) {
             const article = globalArticles.find(a => a._id === id);
             if (!article) return;
@@ -323,7 +310,6 @@
             lucide.createIcons();
         }
 
-        // رفع مقال جديد لقاعدة البيانات السحابية
         async function saveNewArticle() {
             const title = document.getElementById('post-title').value.trim();
             const category = document.getElementById('post-category').value;
@@ -364,7 +350,6 @@
             }
         }
 
-        // بناء قائمة إدارة وحذف المقالات داخل لوحة التحكم
         function renderAdminArticlesList() {
             const list = document.getElementById('admin-articles-list');
             list.innerHTML = '';
@@ -390,7 +375,6 @@
             lucide.createIcons();
         }
 
-        // حذف مقال نهائياً من السيرفر
         async function deleteArticle(id) {
             if(!confirm('هل أنت متأكد تماماً من رغبتك في حذف هذا المقال نهائياً من الموقع وقاعدة البيانات؟')) return;
 
@@ -410,7 +394,6 @@
             }
         }
 
-        // فتح لوحة الإدارة والتحقق المباشر من الهوية عبر الـ API الخاص بكلمة مرورك الجديدة المحددة
         async function toggleAdminPanel() {
             const panel = document.getElementById('admin-panel');
             if (panel.classList.contains('hidden')) {
@@ -418,7 +401,6 @@
                 if (!password) return;
 
                 try {
-                    // الاتصال بالتحقق الخلفي للمستخدم باستخدام بريدك المحدد وكلمة مرورك الجديدة ZokLok@2011
                     const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -453,7 +435,6 @@
             window.scrollTo(0, 0);
         }
 
-        // بدء تشغيل البرنامج وجلب البيانات
         fetchArticles();
         lucide.createIcons();
     </script>
