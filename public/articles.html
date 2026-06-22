@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang=\"ar\" dir=\"rtl\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>المقالات والتقارير | Prestigeguard - إدارة المخاطر الرقمية</title>
+    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
+    <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght=400;700;800&family=Tajawal:wght=300;400;500;700;800&display=swap\" rel=\"stylesheet\">
+    <script src=\"https://cdn.tailwindcss.com\"></script>
+    <script src=\"https://unpkg.com/lucide@latest\"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Tajawal', 'sans-serif'] },
+                    colors: {
+                        corporate: { 50: '#f0f4f8', 100: '#d9e2ec', 500: '#334e68', 800: '#102a43', 900: '#0b1c2c' },
+                        gold: { 400: '#d4af37', 500: '#c5a028' }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class=\"bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen\">
+
+    <header class=\"bg-corporate-900 border-b border-corporate-800 text-white sticky top-0 z-50 shadow-md\">
+        <div class=\"max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between\">
+            <div class=\"flex items-center gap-3\">
+                <a href=\"/\" class=\"flex items-center gap-2 group\">
+                    <span class=\"font-['Montserrat'] font-extrabold text-lg tracking-wider text-gold-400 group-hover:text-white transition-colors\">PRESTIGEGUARD</span>
+                </a>
+            </div>
+            <nav class=\"hidden md:flex items-center gap-8 text-sm font-medium\">
+                <a href=\"/\" class=\"hover:text-gold-400 transition-colors\">الرئيسية</a>
+                <button onclick=\"toggleAdminPanel()\" class=\"bg-gold-400 hover:bg-gold-500 text-corporate-900 font-bold px-4 py-2 rounded-lg transition-all flex items-center gap-2 text-xs shadow-sm\">
+                    <i data-lucide=\"lock\" class=\"w-3.5 h-3.5\"></i> لوحة الإدارة
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class=\"flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10\">
+        
+        <section id=\"admin-panel\" class=\"hidden mb-12 bg-white border border-yellow-200 rounded-2xl p-6 shadow-sm\">
+            <div class=\"flex justify-between items-center border-b border-gray-100 pb-4 mb-6\">
+                <div class=\"flex items-center gap-2 text-corporate-900\">
+                    <i data-lucide=\"sliders\" class=\"w-5 h-5 text-gold-400\"></i>
+                    <h2 class=\"text-xl font-bold\">لوحة الإشراف والتحكم بالمحتوى</h2>
+                </div>
+                <button onclick=\"logoutAdmin()\" class=\"text-gray-500 hover:text-red-600 font-medium text-sm flex items-center gap-1 transition-colors\">
+                    <i data-lucide=\"log-out\" class=\"w-4 h-4\"></i> تسجيل الخروج
+                </button>
+            </div>
+            
+            <div class=\"grid grid-cols-1 lg:grid-cols-3 gap-8\">
+                <div class=\"lg:col-span-2 space-y-4\">
+                    <h3 class=\"font-bold text-gray-700 text-sm mb-2\">إضافة مقال أو تقرير جديد</h3>
+                    <div class=\"grid grid-cols-1 sm:grid-cols-2 gap-4\">
+                        <input type=\"text\" id=\"post-title\" placeholder=\"عنوان المقال الجديد\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\">
+                        <select id=\"post-category\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\">
+                            <option>إدارة السمعة الرقمية</option>
+                            <option>الأمن السيبراني</option>
+                            <option>علاقات المستثمرين</option>
+                            <option>تقارير الاختراقات</option>
+                        </select>
+                    </div>
+                    <input type=\"text\" id=\"post-icon\" value=\"file-text\" placeholder=\"أيقونة Lucide (مثال: shield, lock, file-text)\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\">
+                    <textarea id=\"post-excerpt\" rows=\"2\" placeholder=\"مقتطف قصير يظهر في البطاقة الخارجية لمحة عامة...\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\"></textarea>
+                    <textarea id=\"post-body\" rows=\"6\" placeholder=\"نص المقال الكامل والمفصل الأساسي...\" class=\"w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-corporate-500\"></textarea>
+                    <button onclick=\"saveNewArticle()\" class=\"w-full bg-corporate-800 hover:bg-corporate-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-md text-sm flex items-center justify-center gap-2\">
+                        <i data-lucide=\"check-circle\" class=\"w-4 h-4 text-gold-400\"></i> اعتماد ونشر التقرير فوراً في السحابة
+                    </button>
+                </div>
+                <div class=\"bg-gray-50 rounded-xl p-4 border border-gray-100 flex flex-col\">
+                    <h3 class=\"font-bold text-gray-700 text-sm mb-3\">إدارة وإزالة البيانات المنشورة</h3>
+                    <div id=\"admin-articles-list\" class=\"space-y-2 overflow-y-auto max-h-[360px] flex-grow pr-1\">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id=\"hub-view\" class=\"space-y-10\">
+            <div class=\"text-center max-w-2xl mx-auto space-y-3\">
+                <h1 class=\"text-3xl md:text-4xl font-extrabold text-corporate-900 tracking-tight\">المقالات المهنية والتقارير التحليلية</h1>
+                <p class=\"text-gray-500 text-sm md:text-base\">تابع أحدث الاستراتيجيات والدراسات الأمنية الصادرة عن خبراء إدارة المخاطر الرقمية وحماية الصيت المؤسسي.</p>
+            </div>
+            <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+        </section>
+
+        <section id=\"reader-view\" class=\"hidden bg-white border border-gray-100 rounded-2xl p-6 md:p-10 shadow-sm max-w-4xl mx-auto\">
+            <button onclick=\"switchToListView()\" class=\"mb-6 inline-flex items-center gap-2 text-sm font-bold text-corporate-500 hover:text-corporate-800 transition-colors\">
+                <i data-lucide=\"arrow-right\" class=\"w-4 h-4\"></i> العودة لمركز التقارير والمقالات
+            </button>
+            <article class=\"space-y-6\">
+                <div class=\"space-y-3 border-b border-gray-100 pb-6\">
+                    <span id=\"read-category\" class=\"bg-corporate-50 text-corporate-800 text-xs font-bold px-3 py-1.5 rounded-full\"></span>
+                    <h1 id=\"read-title\" class=\"text-2xl md:text-3xl font-extrabold text-corporate-900 leading-tight text-right\"></h1>
+                    <p class=\"text-xs text-gray-400 flex items-center gap-1\"><i data-lucide=\"calendar\" class=\"w-3.5 h-3.5\"></i> <span id=\"read-date\"></span></p>
+                </div>
+                <div id=\"read-body\" class=\"prose max-w-none text-gray-600 text-sm md:text-base leading-relaxed text-right space-y-4\">
+                    </div>
+            </article>
+        </section>
+    </main>
+
+    <script>
+        // Automatic runtime dynamic route sniffing resolution
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? 'http://localhost:3000'
+            : window.location.origin;
+
+        let globalArticles = [];
+
+        async function fetchArticles() {
+            const grid = document.getElementById('articles-grid');
+            grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">جاري جلب آخر المقالات والبيانات من السحابة...</p>';
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/articles`);
+                globalArticles = await res.json();
+                renderArticlesGrid();
+                if(!document.getElementById('admin-panel').classList.contains('hidden')) {
+                    renderAdminArticlesList();
+                }
+            } catch (err) {
+                grid.innerHTML = '<p class="col-span-full text-center text-red-500 py-12">حدث خطأ أثناء الاتصال بالخادم السحابي.</p>';
+            }
+        }
+
+        function renderArticlesGrid() {
+            const grid = document.getElementById('articles-grid');
+            grid.innerHTML = '';
+            
+            if(globalArticles.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">لا توجد مقالات منشورة حالياً.</p>';
+                return;
+            }
+
+            globalArticles.forEach(art => {
+                grid.innerHTML += `
+                    <article class="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            <div class="h-44 bg-corporate-800 flex items-center justify-center p-6 text-center relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-tr from-corporate-900 to-corporate-500 opacity-90"></div>
+                                <i data-lucide="${art.icon || 'file-text'}" class="w-10 h-10 text-gold-400 relative z-10"></i>
+                            </div>
+                            <div class="p-5 text-right">
+                                <div class="flex items-center gap-2 text-xs text-gray-400 mb-2 justify-start flex-row-reverse">
+                                    <span>${art.date}</span>
+                                    <span>•</span>
+                                    <span>${art.category}</span>
+                                </div>
+                                <h3 dir="auto" class="text-lg font-bold text-corporate-900 mb-2 hover:text-gold-500 transition-colors">
+                                    <a href="javascript:void(0)" onclick="openArticle('${art._id}')">${art.title}</a>
+                                </h3>
+                                <p dir="auto" class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">${art.excerpt}</p>
+                            </div>
+                        </div>
+                        <div class="p-5 pt-0 text-right">
+                            <button onclick="openArticle('${art._id}')" class="text-corporate-800 font-bold text-sm inline-flex items-center gap-1 hover:text-gold-500 transition-colors group">
+                                اقرأ المقال كاملاً 
+                                <i data-lucide="arrow-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
+                            </button>
+                        </div>
+                    </article>
+                `;
+            });
+            lucide.createIcons();
+        }
+
+        function openArticle(id) {
+            const article = globalArticles.find(a => a._id === id);
+            if (!article) return;
+
+            document.getElementById('read-category').innerText = article.category;
+            document.getElementById('read-title').innerText = article.title;
+            document.getElementById('read-date').innerText = article.date;
+            
+            const bodyContainer = document.getElementById('read-body');
+            bodyContainer.innerHTML = '';
+            
+            article.bodyText.split('\n').forEach(paragraph => {
+                if(!paragraph.trim()) return;
+                bodyContainer.innerHTML += `<p dir="auto" class="mb-4">${paragraph.trim()}</p>`;
+            });
+
+            document.getElementById('hub-view').classList.add('hidden');
+            document.getElementById('reader-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
+            lucide.createIcons();
+        }
+
+        async function saveNewArticle() {
+            const title = document.getElementById('post-title').value.trim();
+            const category = document.getElementById('post-category').value;
+            const icon = document.getElementById('post-icon').value.trim();
+            const excerpt = document.getElementById('post-excerpt').value.trim();
+            const bodyText = document.getElementById('post-body').value.trim();
+
+            if (!title || !excerpt || !bodyText) {
+                alert('الرجاء تعبئة جميع الحقول المطلوبة للمقال.');
+                return;
+            }
+
+            const now = new Date();
+            const formattedDate = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()}`;
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/articles`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('admin_token')}`
+                    },
+                    body: JSON.stringify({ title, category, icon, excerpt, bodyText, date: formattedDate })
+                });
+
+                if (res.ok) {
+                    alert('🚀 تم نشر المقال وحفظه سحابياً بنجاح!');
+                    document.getElementById('post-title').value = '';
+                    document.getElementById('post-excerpt').value = '';
+                    document.getElementById('post-body').value = '';
+                    fetchArticles();
+                } else {
+                    const error = await res.json();
+                    alert('خطأ: ' + error.message);
+                }
+            } catch (err) {
+                alert('فشل الاتصال بالخادم');
+            }
+        }
+
+        function renderAdminArticlesList() {
+            const list = document.getElementById('admin-articles-list');
+            list.innerHTML = '';
+            globalArticles.forEach(art => {
+                list.innerHTML += `
+                    <div class="flex justify-between items-center bg-gray-50 p-3 rounded-lg border gap-4 flex-row-reverse">
+                        <p dir="auto" class="text-sm font-bold text-corporate-900 truncate text-right flex-1">${art.title}</p>
+                        <button onclick="deleteArticle('${art._id}')" class="text-red-600 hover:bg-red-100 px-3 py-1 rounded text-xs font-bold transition-all">
+                            حذف
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        async function deleteArticle(id) {
+            if(!confirm('هل أنت متأكد من الحذف النهائي من قاعدة البيانات؟')) return;
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/api/articles/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${localStorage.getItem('admin_token')}` }
+                });
+
+                if (res.ok) {
+                    fetchArticles();
+                } else {
+                    alert('ليس لديك صلاحية لحذف المقالات');
+                }
+            } catch (err) {
+                alert('فشل الاتصال بالخادم');
+            }
+        }
+
+        async function toggleAdminPanel() {
+            const panel = document.getElementById('admin-panel');
+            if (panel.classList.contains('hidden')) {
+                const password = prompt('الرجاء إدخال كلمة مرور الإدارة لفتح الواجهة المرئية:');
+                if (!password) return;
+
+                try {
+                    const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: "admin@prestigeguard.com", password })
+                    });
+                    const data = await res.json();
+
+                    if (res.ok && data.token) {
+                        localStorage.setItem('admin_token', data.token);
+                        panel.classList.remove('hidden');
+                        renderAdminArticlesList();
+                        alert('🔐 تم التحقق بنجاح! لوحة التحكم مهيأة بالكامل الآن ومجهّزة بأدوات الحذف والنشر.');
+                    } else {
+                        alert('❌ كلمة مرور خاطئة! لا تملك صلاحية الوصول.');
+                    }
+                } catch (err) {
+                    alert('حدث خطأ في الاتصال بالخادم أثناء التحقق.');
+                }
+            } else {
+                panel.classList.add('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('admin_token');
+            document.getElementById('admin-panel').classList.add('hidden');
+        }
+
+        function switchToListView() {
+            document.getElementById('reader-view').classList.add('hidden');
+            document.getElementById('hub-view').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize App
+        fetchArticles();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
