@@ -10,9 +10,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Serve frontend static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
-
+// Serve frontend static files from the public directory 
+app.use(express.static(path.join(__dirname, 'public'), { extensions: ['html'] }));
 // ==========================================
 // 1. Database Schemas & Models
 // ==========================================
