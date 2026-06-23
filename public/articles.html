@@ -319,6 +319,11 @@
 
             document.getElementById('hub-view').classList.add('hidden');
             document.getElementById('reader-view').classList.remove('hidden');
+            history.pushState(
+                {},
+                '',
+                `/articles/${article.slug}`
+            );
             window.scrollTo(0, 0);
             lucide.createIcons();
         }
@@ -330,7 +335,7 @@
             const icon = document.getElementById('post-icon').value;
             const excerpt = document.getElementById('post-excerpt').value.trim();
             const bodyText = document.getElementById('post-body').value.trim();
-
+            
             if (!title || !excerpt || !bodyText) {
                 alert('الرجاء تعبئة العنوان، النبذة المختصرة، ونص المقال بالكامل قبل النشر!');
                 return;
@@ -453,8 +458,30 @@
             window.scrollTo(0, 0);
         }
 
-        // بدء تشغيل البرنامج وجلب البيانات
-        fetchArticles();
+        // بدء تشغيل البرنامج وجلب البيانات 
+        window.addEventListener('load', async () => {
+
+            await fetchArticles();
+
+            const path = window.location.pathname;
+                    
+            if(path.startsWith('/articles/')) {
+
+                const slug = path.split('/').pop();
+
+                const article = globalArticles.find(
+                    a => a.slug === slug
+                );
+
+                if(article) {
+
+                    openArticle(article._id);
+
+                }
+
+            }
+
+        });
         lucide.createIcons();
     </script>
 </body>
