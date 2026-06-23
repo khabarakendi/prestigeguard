@@ -140,7 +140,7 @@ app.delete('/api/articles/:id', authenticate, requireAdmin, async (req, res) => 
 });
 
 // Fallback routing: Route all unhandled requests to index.html
-app.get('/*splat', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
