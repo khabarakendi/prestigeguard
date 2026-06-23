@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 const articleSchema = new mongoose.Schema({
+    articleNumber: {
+        type: Number,
+        unique: true
+    },
     title: { type: String, required: true },
 
     slug: {
@@ -148,23 +152,29 @@ app.post('/api/articles', authenticate, requireAdmin, async (req, res) => {
 
     try {
 
-        const slug = req.body.title
-            .toLowerCase()
-            .trim()
-            .replace(/[^\w\s-]/g, '')
-            .replace(/\s+/g, '-');
+        
+        const lastArticle = await Article
+            .findOne()
+            .sort({ articleNumber: -1 });
+
+        const nextNumber =
+            lastArticle
+                ? lastArticle.articleNumber + 1
+                : 1;
 
         const newArticle = await Article.create({
 
-            title: req.body.title,
-            slug: slug,
+            articleNumber: nextNumber,
+            slug: String(nextNumber),
 
+            title: req.body.title,
             category: req.body.category,
             icon: req.body.icon,
             excerpt: req.body.excerpt,
             bodyText: req.body.bodyText,
             date: req.body.date
         });
+
 
         res.status(201).json(newArticle);
 
