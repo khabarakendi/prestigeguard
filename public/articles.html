@@ -319,10 +319,17 @@
 
             document.getElementById('hub-view').classList.add('hidden');
             document.getElementById('reader-view').classList.remove('hidden');
+            const slug =
+                article.slug ||
+                article.title
+                    .toLowerCase()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/\s+/g, '-');
+
             history.pushState(
                 {},
                 '',
-                `/articles/${article.slug}`
+                `/articles/${slug}`
             );
             window.scrollTo(0, 0);
             lucide.createIcons();
@@ -453,8 +460,17 @@
         }
 
         function switchToListView() {
+
+            history.pushState(
+                {},
+                '',
+                '/articles'
+            );
+
             document.getElementById('reader-view').classList.add('hidden');
+
             document.getElementById('hub-view').classList.remove('hidden');
+
             window.scrollTo(0, 0);
         }
 
@@ -464,24 +480,63 @@
             await fetchArticles();
 
             const path = window.location.pathname;
-                    
+
             if(path.startsWith('/articles/')) {
 
                 const slug = path.split('/').pop();
 
-                const article = globalArticles.find(
-                    a => a.slug === slug
-                );
+                const article = globalArticles.find(a => {
+
+                    const generatedSlug =
+                        a.slug ||
+                        a.title
+                            .toLowerCase()
+                            .replace(/[^\w\s-]/g, '')
+                            .replace(/\s+/g, '-');
+
+                    return generatedSlug === slug;
+                });
 
                 if(article) {
-
                     openArticle(article._id);
-
                 }
-
             }
 
         });
+
+
+        window.addEventListener('popstate', () => {
+
+            const path = window.location.pathname;
+
+            if(path === '/articles') {
+
+                document.getElementById('reader-view').classList.add('hidden');
+                document.getElementById('hub-view').classList.remove('hidden');
+
+                return;
+            }
+
+            const slug = path.split('/').pop();
+
+            const article = globalArticles.find(a => {
+
+                const generatedSlug =
+                    a.slug ||
+                    a.title
+                        .toLowerCase()
+                        .replace(/[^\w\s-]/g, '')
+                        .replace(/\s+/g, '-');
+
+                return generatedSlug === slug;
+            });
+
+            if(article) {
+                openArticle(article._id);
+            }
+
+        });
+
         lucide.createIcons();
     </script>
 </body>
