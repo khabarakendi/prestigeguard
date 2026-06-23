@@ -179,12 +179,11 @@ app.post('/api/articles', authenticate, requireAdmin, async (req, res) => {
         res.status(201).json(newArticle);
 
     } catch (error) {
-
-        res.status(500).json({
-            message: 'Failed to create article'
-        });
-
-    }
+            console.error("CREATE ARTICLE ERROR:", error);
+            return res.status(500).json({
+                message: error.message
+            });
+        }
 
 });
 
