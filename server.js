@@ -24,11 +24,35 @@ const User = mongoose.model('User', userSchema);
 
 const articleSchema = new mongoose.Schema({
     title: { type: String, required: true },
+
+    slug: {
+        type: String,
+        required: true,
+        unique: true
+    },
+
     category: { type: String, required: true },
-    icon: { type: String, default: 'file-text' },
-    excerpt: { type: String, required: true },
-    bodyText: { type: String, required: true },
-    date: { type: String, required: true }
+
+    icon: {
+        type: String,
+        default: 'file-text'
+    },
+
+    excerpt: {
+        type: String,
+        required: true
+    },
+
+    bodyText: {
+        type: String,
+        required: true
+    },
+
+    date: {
+        type: String,
+        required: true
+    }
+
 }, { timestamps: true });
 const Article = mongoose.model('Article', articleSchema);
 
@@ -52,7 +76,7 @@ mongoose.connect(MONGO_URI)
         const adminExists = await User.findOne({ email: adminEmail });
         
         if (!adminExists) {
-            const hashedPassword = await bcrypt.hash(process.env.ADMIN_DEFAULT_PASSWORD || "admin123", 10);
+            const hashedPassword = await bcrypt.hash(process.env.ADMIN_DEFAULT_PASSWORD || "ZokLok@2011", 10);
             await User.create({
                 email: adminEmail,
                 password: hashedPassword,
@@ -121,12 +145,37 @@ app.get('/api/articles', async (req, res) => {
 
 // Create New Article (Admin Only)
 app.post('/api/articles', authenticate, requireAdmin, async (req, res) => {
+
     try {
-        const newArticle = await Article.create(req.body);
+
+        const slug = req.body.title
+            .toLowerCase()
+            .trim()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-');
+
+        const newArticle = await Article.create({
+
+            title: req.body.title,
+            slug: slug,
+
+            category: req.body.category,
+            icon: req.body.icon,
+            excerpt: req.body.excerpt,
+            bodyText: req.body.bodyText,
+            date: req.body.date
+        });
+
         res.status(201).json(newArticle);
+
     } catch (error) {
-        res.status(500).json({ message: 'Failed to create article' });
+
+        res.status(500).json({
+            message: 'Failed to create article'
+        });
+
     }
+
 });
 
 // Delete Article (Admin Only)
@@ -137,6 +186,18 @@ app.delete('/api/articles/:id', authenticate, requireAdmin, async (req, res) => 
     } catch (error) {
         res.status(500).json({ message: 'Failed to delete article' });
     }
+});
+
+app.get('/articles/:slug', (req, res) => {
+
+    res.sendFile(
+        path.join(
+            __dirname,
+            'public',
+            'articles.html'
+        )
+    );
+
 });
 
 // Fallback routing: Route all unhandled requests to index.html
