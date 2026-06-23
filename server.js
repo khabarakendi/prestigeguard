@@ -154,17 +154,18 @@ app.post('/api/articles', authenticate, requireAdmin, async (req, res) => {
 
         
         const lastArticle = await Article
-            .findOne()
-            .sort({ articleNumber: -1 });
+            .find({ articleNumber: { $exists: true, $ne: null } })
+            .sort({ articleNumber: -1 })
+            .limit(1);
 
-        const nextNumber =
-            lastArticle
-                ? lastArticle.articleNumber + 1
-                : 1;
+        const lastNumber = Number(lastArticle?.[0]?.articleNumber);
+
+        const nextNumber = Number.isFinite(lastNumber)
+            ? lastNumber + 1
+            : 1;
 
         const newArticle = await Article.create({
-
-            articleNumber: nextNumber,
+            articleNumber: Number(nextNumber),
             slug: String(nextNumber),
 
             title: req.body.title,
