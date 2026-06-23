@@ -201,7 +201,7 @@ app.get('/articles/:slug', (req, res) => {
 });
 
 // Fallback routing: Route all unhandled requests to index.html
-app.get('*', (req, res) => {
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
