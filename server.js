@@ -147,6 +147,10 @@ app.get('/api/articles', async (req, res) => {
     }
 });
 
+app.get("/ping", (req, res) => {
+    res.status(200).send("OK");
+});
+
 // Create New Article (Admin Only)
 app.post('/api/articles', authenticate, requireAdmin, async (req, res) => {
 
