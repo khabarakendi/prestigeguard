@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حماية الصيت | Prestigeguard - إدارة المخاطر الرقمية</title>
+    <title id="site-title">حماية الصيت | Prestigeguard - إدارة المخاطر الرقمية</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Tajawal:wght=300;400;500;700;800&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -62,23 +62,33 @@
                                 <circle cx="35" cy="55" r="5" fill="#ffffff"/>
                                 <circle cx="55" cy="30" r="5" fill="#d4af37"/>
                             </g>
-                            <text x="150" y="135" font-family="'Tajawal', sans-serif" font-weight="800" font-size="44" fill="#ffffff" text-anchor="middle">حماية الصيت</text>
+                            <text x="150" y="135" id="logo-text-ar" font-family="'Tajawal', sans-serif" font-weight="800" font-size="44" fill="#ffffff" text-anchor="middle">حماية الصيت</text>
                             <text x="150" y="175" font-family="'Montserrat', sans-serif" font-weight="800" font-size="25" fill="#d4af37" letter-spacing="2" text-anchor="middle">PRESTIGEGUARDS</text>
-                            <text x="150" y="205" font-family="'Tajawal', sans-serif" font-weight="400" font-size="16" fill="#94a3b8" text-anchor="middle">نحمي صيتك ونبني حضورك الرقمي</text>
+                            <text x="150" y="205" id="logo-sub-ar" font-family="'Tajawal', sans-serif" font-weight="400" font-size="16" fill="#94a3b8" text-anchor="middle">نحمي صيتك ونبني حضورك الرقمي</text>
                             <text x="150" y="225" font-family="'Montserrat', sans-serif" font-weight="500" font-size="9" fill="#94a3b8" letter-spacing="0.5" text-anchor="middle">Securing Your Reputation. Elevating Your Digital Presence.</text>
                         </svg>
                     </a>
                 </div>
                 
                 <div class="hidden md:flex items-center gap-6 lg:gap-8">
-                    <a href="#home" class="text-gray-300 hover:text-white transition-colors text-sm font-medium whitespace-nowrap">الرئيسية</a>
-                    <a href="#services" class="text-gray-300 hover:text-white transition-colors text-sm font-medium whitespace-nowrap">خدماتنا</a>
-                    <a href="#methodology" class="text-gray-300 hover:text-white transition-colors text-sm font-medium whitespace-nowrap">منهجيتنا</a>
-                    <a href="/articles" class="text-gray-300 hover:text-white transition-colors text-sm font-medium whitespace-nowrap">المقالات</a>
-                    <a href="#contact" class="bg-gold-500 hover:bg-gold-400 text-white px-5 py-2.5 rounded text-sm font-bold transition-colors shadow-lg whitespace-nowrap mr-2">احصل على استشارة سرية</a>
+                    <a href="#home" id="nav-home" class="text-gray-300 hover:text-white transition-colors text-sm font-medium whitespace-nowrap">الرئيسية</a>
+                    <a href="#services" id="nav-services" class="text-gray-300 hover:text-white transition-colors text-sm font-medium whitespace-nowrap">خدماتنا</a>
+                    <a href="#methodology" id="nav-methodology" class="text-gray-300 hover:text-white transition-colors text-sm font-medium whitespace-nowrap">منهجيتنا</a>
+                    <a href="/articles" id="nav-articles" class="text-gray-300 hover:text-white transition-colors text-sm font-medium whitespace-nowrap">المقالات</a>
+                    
+                    <div class="flex items-center bg-corporate-800 rounded-lg p-1 border border-corporate-500/30">
+                        <button onclick="setLanguage('ar')" id="lang-btn-ar" class="px-2.5 py-1 text-xs font-bold rounded transition-all text-white bg-gold-500">AR</button>
+                        <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 text-xs font-bold rounded transition-all text-gray-400 hover:text-white">EN</button>
+                    </div>
+
+                    <a href="#contact" id="nav-cta" class="bg-gold-500 hover:bg-gold-400 text-white px-5 py-2.5 rounded text-sm font-bold transition-colors shadow-lg whitespace-nowrap mr-2">احصل على استشارة سرية</a>
                 </div>
 
-                <div class="md:hidden flex items-center">
+                <div class="md:hidden flex items-center gap-3">
+                    <div class="flex items-center bg-corporate-800 rounded-lg p-1 border border-corporate-500/30">
+                        <button onclick="setLanguage('ar')" id="mobile-lang-btn-ar" class="px-2 py-0.5 text-xs font-bold rounded transition-all text-white bg-gold-500">AR</button>
+                        <button onclick="setLanguage('en')" id="mobile-lang-btn-en" class="px-2 py-0.5 text-xs font-bold rounded transition-all text-gray-400 hover:text-white">EN</button>
+                    </div>
                     <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none p-2">
                         <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
                     </button>
@@ -87,32 +97,32 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-corporate-900 border-t border-corporate-800 px-6 pt-2 pb-6 space-y-3 transition-all">
-            <a href="#home" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2.5 text-base font-medium border-b border-gray-800/50">الرئيسية</a>
-            <a href="#services" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2.5 text-base font-medium border-b border-gray-800/50">خدماتنا</a>
-            <a href="#methodology" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2.5 text-base font-medium border-b border-gray-800/50">منهجيتنا</a>
-            <a href="/articles" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2.5 text-base font-medium border-b border-gray-800/50">المقالات</a>
-            <a href="#contact" onclick="toggleMobileMenu()" class="block bg-gold-500 hover:bg-gold-400 text-white text-center px-4 py-3 rounded-lg text-base font-bold shadow-lg mt-4">احصل على استشارة سرية</a>
+            <a href="#home" id="mob-nav-home" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2.5 text-base font-medium border-b border-gray-800/50">الرئيسية</a>
+            <a href="#services" id="mob-nav-services" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2.5 text-base font-medium border-b border-gray-800/50">خدماتنا</a>
+            <a href="#methodology" id="mob-nav-methodology" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2.5 text-base font-medium border-b border-gray-800/50">منهجيتنا</a>
+            <a href="/articles" id="mob-nav-articles" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2.5 text-base font-medium border-b border-gray-800/50">المقالات</a>
+            <a href="#contact" id="mob-nav-cta" onclick="toggleMobileMenu()" class="block bg-gold-500 hover:bg-gold-400 text-white text-center px-4 py-3 rounded-lg text-base font-bold shadow-lg mt-4">احصل على استشارة سرية</a>
         </div>
     </nav>
 
     <section id="home" class="relative pt-48 pb-20 lg:pt-56 lg:pb-32 hero-pattern overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-corporate-900"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-corporate-800 border border-corporate-500 text-gold-400 text-sm font-medium mb-6">
+            <span id="hero-badge" class="inline-block py-1 px-3 rounded-full bg-corporate-800 border border-corporate-500 text-gold-400 text-sm font-medium mb-6">
                 الوكالة الرائدة في إدارة المخاطر الرقمية
             </span>
-            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+            <h1 id="hero-title" class="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
                 نحمي <span class="text-gold-400">صيتك</span><br/> ونبني حضورك الرقمي
             </h1>
-            <p class="mt-4 max-w-3xl mx-auto text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed font-light px-2">
+            <p id="hero-desc" class="mt-4 max-w-3xl mx-auto text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed font-light px-2">
                 نقدم حلولاً تقنية متقدمة للقيادات والشركات لإزالة المحتوى المسيء، وتأمين السمعة الرقمية، والسيطرة التامة على نتائج محركات البحث بسرية مطلقة. بدون تعقيدات قانونية.
             </p>
             <div class="mt-10 flex flex-col sm:flex-row justify-center gap-4 px-4 sm:px-0">
-                <a href="#contact" class="bg-gold-500 hover:bg-gold-400 text-white px-8 py-4 rounded font-bold text-base sm:text-lg transition-all shadow-lg shadow-gold-500/20 flex items-center justify-center gap-2">
+                <a href="#contact" id="hero-cta-1" class="bg-gold-500 hover:bg-gold-400 text-white px-8 py-4 rounded font-bold text-base sm:text-lg transition-all shadow-lg shadow-gold-500/20 flex items-center justify-center gap-2">
                     <i data-lucide="lock" class="w-5 h-5"></i>
-                    طلب تدقيق مجاني وسري
+                    <span>طلب تدقيق مجاني وسري</span>
                 </a>
-                <a href="#services" class="bg-transparent border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 px-8 py-4 rounded font-bold text-base sm:text-lg transition-all flex items-center justify-center">
+                <a href="#services" id="hero-cta-2" class="bg-transparent border border-gray-600 text-gray-300 hover:text-white hover:border-gray-400 px-8 py-4 rounded font-bold text-base sm:text-lg transition-all flex items-center justify-center">
                     اكتشف حلولنا التقنية
                 </a>
             </div>
@@ -121,21 +131,21 @@
 
     <section class="py-10 bg-corporate-800 border-b border-corporate-500/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x-reverse md:divide-x divide-corporate-500/30">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x-reverse md:divide-x divide-corporate-500/30" id="quick-features-grid">
                 <div class="p-4 pt-6 md:pt-4">
                     <i data-lucide="shield-alert" class="w-10 h-10 text-gold-400 mx-auto mb-3"></i>
-                    <h3 class="text-white font-bold text-lg">سرية تامة (NDA)</h3>
-                    <p class="text-gray-400 text-sm mt-2">نوقع اتفاقية عدم إفشاء المعلومات قبل مناقشة أي تفاصيل.</p>
+                    <h3 class="text-white font-bold text-lg" id="feat-1-title">سرية تامة (NDA)</h3>
+                    <p class="text-gray-400 text-sm mt-2" id="feat-1-desc">نوقع اتفاقية عدم إفشاء المعلومات قبل مناقشة أي تفاصيل.</p>
                 </div>
                 <div class="p-4 pt-6 md:pt-4">
                     <i data-lucide="badge-check" class="w-10 h-10 text-gold-400 mx-auto mb-3"></i>
-                    <h3 class="text-white font-bold text-lg">الدفع مقابل الإزالة</h3>
-                    <p class="text-gray-400 text-sm mt-2">نموذج عمل مبني على النتائج. لا رسوم مخفية دون إنجاز.</p>
+                    <h3 class="text-white font-bold text-lg" id="feat-2-title">الدفع مقابل الإزالة</h3>
+                    <p class="text-gray-400 text-sm mt-2" id="feat-2-desc">نموذج عمل مبني على النتائج. لا رسوم مخفية دون إنجاز.</p>
                 </div>
                 <div class="p-4 pt-6 md:pt-4">
                     <i data-lucide="cpu" class="w-10 h-10 text-gold-400 mx-auto mb-3"></i>
-                    <h3 class="text-white font-bold text-lg">حلول تقنية لا قانونية</h3>
-                    <p class="text-gray-400 text-sm mt-2">نستخدم أدوات استخبارات الويب لحذف المحتوى دون لفت الانتباه.</p>
+                    <h3 class="text-white font-bold text-lg" id="feat-3-title">حلول تقنية لا قانونية</h3>
+                    <p class="text-gray-400 text-sm mt-2" id="feat-3-desc">نستخدم أدوات استخبارات الويب لحذف المحتوى دون لفت الانتباه.</p>
                 </div>
             </div>
         </div>
@@ -144,9 +154,9 @@
     <section id="services" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-gold-500 font-bold tracking-wider text-sm mb-2 uppercase">مجالات التخصص</h2>
-                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-corporate-900 mb-4">هندسة السمعة عبر الإنترنت</h3>
-                <p class="text-gray-600 text-base sm:text-lg">نتعامل مع الأزمات الرقمية كمهندسي بيانات، ليس فقط كمستشارين. نستهدف جذور المشكلة في خوادم الاستضافة وخوارزميات البحث.</p>
+                <h2 id="services-badge" class="text-gold-500 font-bold tracking-wider text-sm mb-2 uppercase">مجالات التخصص</h2>
+                <h3 id="services-title" class="text-2xl sm:text-3xl md:text-4xl font-bold text-corporate-900 mb-4">هندسة السمعة عبر الإنترنت</h3>
+                <p id="services-desc" class="text-gray-600 text-base sm:text-lg">نتعامل مع الأزمات الرقمية كمهندسي بيانات، ليس فقط كمستشارين. نستهدف جذور المشكلة في خوادم الاستضافة وخوارزميات البحث.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -154,8 +164,8 @@
                     <div class="w-14 h-14 bg-corporate-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-corporate-900 transition-colors">
                         <i data-lucide="trash-2" class="w-7 h-7 text-corporate-800 group-hover:text-gold-400 transition-colors"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-corporate-900 mb-3">الإزالة الاستراتيجية للمحتوى</h4>
-                    <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                    <h4 id="srv-1-title" class="text-xl font-bold text-corporate-900 mb-3">الإزالة الاستراتيجية للمحتوى</h4>
+                    <p id="srv-1-desc" class="text-gray-600 leading-relaxed text-sm sm:text-base">
                         نجري عمليات تدقيق سيبراني شاملة للروابط المسيئة لرصد أي خروقات للسياسات الرقمية أو بروتوكولات الاستضافة، مما يتيح لنا تقديم مذكرات تقنية حازمة تؤدي إلى إزالة المحتوى من الجذور.
                     </p>
                 </div>
@@ -164,8 +174,8 @@
                     <div class="w-14 h-14 bg-corporate-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-corporate-900 transition-colors">
                         <i data-lucide="arrow-down-to-line" class="w-7 h-7 text-corporate-800 group-hover:text-gold-400 transition-colors"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-corporate-900 mb-3">هندسة الخوارزميات (Suppression)</h4>
-                    <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                    <h4 id="srv-2-title" class="text-xl font-bold text-corporate-900 mb-3">هندسة الخوارزميات (Suppression)</h4>
+                    <p id="srv-2-desc" class="text-gray-600 leading-relaxed text-sm sm:text-base">
                         نطبق استراتيجيات خوارزمية متقدمة لإعادة هيكلة نتائج البحث. نقوم بتعزيز الأصول الرقمية الإيجابية ودفع المحتوى السلبي بعيداً عن الظهور، مما يضمن سيطرتك التامة على الانطباع الأول.
                     </p>
                 </div>
@@ -174,8 +184,8 @@
                     <div class="w-14 h-14 bg-corporate-50 rounded-lg flex items-center justify-center mb-6 group-hover:bg-corporate-900 transition-colors">
                         <i data-lucide="radar" class="w-7 h-7 text-corporate-800 group-hover:text-gold-400 transition-colors"></i>
                     </div>
-                    <h4 class="text-xl font-bold text-corporate-900 mb-3">الرصد الاستباقي للأزمات</h4>
-                    <p class="text-gray-600 leading-relaxed text-sm sm:text-base">
+                    <h4 id="srv-3-title" class="text-xl font-bold text-corporate-900 mb-3">الرصد الاستباقي للأزمات</h4>
+                    <p id="srv-3-desc" class="text-gray-600 leading-relaxed text-sm sm:text-base">
                         نعتمد على أنظمة إنذار مبكر لتحليل البيانات المفتوحة (OSINT) على مدار الساعة. نقوم برصد أي إشارات سلبية أو محتوى يستهدف علامتك التجارية فور نشره، مما يتيح لنا احتواء الأزمة قبل تحولها لتريند عام.
                     </p>
                 </div>
@@ -187,36 +197,36 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
                 <div class="lg:w-1/2">
-                    <h2 class="text-gold-500 font-bold tracking-wider text-sm mb-2 uppercase">طريقة العمل</h2>
-                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-corporate-900 mb-6">لماذا تختار الحلول التقنية على النزاعات القانونية؟</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
+                    <h2 id="meth-badge" class="text-gold-500 font-bold tracking-wider text-sm mb-2 uppercase">طريقة العمل</h2>
+                    <h3 id="meth-title" class="text-2xl sm:text-3xl md:text-4xl font-bold text-corporate-900 mb-6">لماذا تختار الحلول التقنية على النزاعات القانونية؟</h3>
+                    <p id="meth-desc" class="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
                         غالباً ما تؤدي الدعاوى القضائية إلى ما يُعرف بـ "تأثير سترايسند" (The Streisand Effect)، حيث يجذب التهديد القانوني انتباهاً إعلامياً أكبر للمشكلة الأساسية.
                     </p>
                     <ul class="space-y-4">
                         <li class="flex items-start gap-3">
                             <i data-lucide="check-circle-2" class="w-6 h-6 text-gold-500 flex-shrink-0 mt-1"></i>
                             <div>
-                                <h4 class="font-bold text-corporate-900">عمليات صامتة</h4>
-                                <p class="text-xs sm:text-sm text-gray-600">نحن نعمل في الخلفية دون لفت الانتباه أو استفزاز الناشر الأصلي.</p>
+                                <h4 id="meth-item-1-title" class="font-bold text-corporate-900">عمليات صامتة</h4>
+                                <p id="meth-item-1-desc" class="text-xs sm:text-sm text-gray-600">نحن نعمل في الخلفية دون لفت الانتباه أو استفزاز الناشر الأصلي.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
                             <i data-lucide="check-circle-2" class="w-6 h-6 text-gold-500 flex-shrink-0 mt-1"></i>
                             <div>
-                                <h4 class="font-bold text-corporate-900">تكلفة مدروسة ومضمونة</h4>
-                                <p class="text-xs sm:text-sm text-gray-600">أنت لا تدفع أتعاب محاماة مفتوحة، بل تدفع مقابل النتيجة التقنية الناجحة.</p>
+                                <h4 id="meth-item-2-title" class="font-bold text-corporate-900">تكلفة مدروسة ومضمونة</h4>
+                                <p id="meth-item-2-desc" class="text-xs sm:text-sm text-gray-600">أنت لا تدفع أتعاب محاماة مفتوحة، بل تدفع مقابل النتيجة التقنية الناجحة.</p>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
                             <i data-lucide="check-circle-2" class="w-6 h-6 text-gold-500 flex-shrink-0 mt-1"></i>
                             <div>
-                                <h4 class="font-bold text-corporate-900">سرعة التنفيذ</h4>
-                                <p class="text-xs sm:text-sm text-gray-600">الطلبات التقنية للمنصات (مثل شكاوى الخصوصية لـ Google) تُعالج أسرع بكثير من قاعات المحاكم.</p>
+                                <h4 id="meth-item-3-title" class="font-bold text-corporate-900">سرعة التنفيذ</h4>
+                                <p id="meth-item-3-desc" class="text-xs sm:text-sm text-gray-600">الطلبات التقنية للمنصات (مثل شكاوى الخصوصية لـ Google) تُعالج أسرع بكثير من قاعات المحاكم.</p>
                             </div>
                         </li>
                     </ul>
                 </div>
-                <div class="lg:w-1/2 w-full relative">
+                <div class="lg:w-1/2 w-full relative animate-container">
                     <div class="absolute inset-0 bg-gold-400 rounded-2xl transform translate-x-4 translate-y-4 opacity-20"></div>
                     <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cyber Security IT Professional" class="rounded-2xl shadow-2xl relative z-10 w-full object-cover h-[300px] sm:h-[450px]">
                 </div>
@@ -231,8 +241,8 @@
                 
                 <div class="lg:w-2/5 bg-corporate-900 p-6 sm:p-10 text-white flex flex-col justify-between">
                     <div>
-                        <h3 class="text-2xl font-bold mb-2 text-gold-400">تواصل معنا بسرية</h3>
-                        <p class="text-gray-400 mb-8 font-light text-xs sm:text-sm">كل المراسلات مشفرة وتخضع لاتفاقية عدم الإفشاء (NDA) منذ اللحظة الأولى.</p>
+                        <h3 id="contact-sidebar-title" class="text-2xl font-bold mb-2 text-gold-400">تواصل معنا بسرية</h3>
+                        <p id="contact-sidebar-desc" class="text-gray-400 mb-8 font-light text-xs sm:text-sm">كل المراسلات مشفرة وتخضع لاتفاقية عدم الإفشاء (NDA) منذ اللحظة الأولى.</p>
                         
                         <div class="space-y-6">
                             <div class="flex items-center gap-4">
@@ -240,7 +250,7 @@
                                     <i data-lucide="mail" class="w-5 h-5 text-gold-400"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-gray-400">البريد الإلكتروني للإدارة</p>
+                                    <p id="lbl-email" class="text-xs text-gray-400">البريد الإلكتروني للإدارة</p>
                                     <p class="font-medium text-sm sm:text-base" dir="ltr">info@prestigeguards.com</p>
                                 </div>
                             </div>
@@ -249,7 +259,7 @@
                                     <i data-lucide="phone" class="w-5 h-5 text-gold-400"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-gray-400">خط الاستشارات الآمن</p>
+                                    <p id="lbl-phone" class="text-xs text-gray-400">خط الاستشارات الآمن</p>
                                     <p class="font-medium text-sm sm:text-base" dir="ltr">+90 539 478 09 30</p>
                                 </div>
                             </div>
@@ -258,8 +268,8 @@
                                     <i data-lucide="map-pin" class="w-5 h-5 text-gold-400"></i>
                                 </div>
                                 <div>
-                                    <p class="text-xs text-gray-400">المقر الرئيسي</p>
-                                    <p class="font-medium text-sm sm:text-base">اسطنبول - تركيا - باغجيلار</p>
+                                    <p id="lbl-hq" class="text-xs text-gray-400">المقر الرئيسي</p>
+                                    <p id="contact-address" class="font-medium text-sm sm:text-base">اسطنبول - تركيا - باغجيلار - شارع 2039</p>
                                 </div>
                             </div>
                         </div>
@@ -267,36 +277,36 @@
                 </div>
 
                 <div class="lg:w-3/5 p-6 sm:p-10 bg-white">
-                    <h3 class="text-2xl font-bold text-corporate-900 mb-6">طلب تدقيق رقمي</h3>
+                    <h3 id="form-title" class="text-2xl font-bold text-corporate-900 mb-6">طلب تدقيق رقمي</h3>
                     <form action="https://formsubmit.co/info@prestigeguards.com" method="POST" class="space-y-5">
                         
-                        <input type="hidden" name="_subject" value="طلب تدقيق رقمي جديد - Prestigeguard">
+                        <input type="hidden" name="_subject" id="form-subject" value="طلب تدقيق رقمي جديد - Prestigeguard">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">الاسم أو اللقب (اختياري)</label>
-                                <input type="text" name="الاسم" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-corporate-500 focus:border-corporate-500 outline-none transition-colors text-sm" placeholder="للحفاظ على السرية، يمكنك استخدام لقب">
+                                <label id="lbl-form-name" class="block text-sm font-medium text-gray-700 mb-1">الاسم أو اللقب (اختياري)</label>
+                                <input type="text" name="الاسم" id="input-name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-corporate-500 focus:border-corporate-500 outline-none transition-colors text-sm" placeholder="للحفاظ على السرية، يمكنك استخدام لقب">
                             </div>
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">البريد الإلكتروني <span class="text-red-500">*</span></label>
+                                <label id="lbl-form-email" class="block text-sm font-medium text-gray-700 mb-1">البريد الإلكتروني <span class="text-red-500">*</span></label>
                                 <input type="email" name="البريد_الإلكتروني" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-corporate-500 focus:border-corporate-500 outline-none transition-colors text-left text-sm" dir="ltr" placeholder="email@company.com">
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">الروابط المستهدفة / المشكلة <span class="text-red-500">*</span></label>
+                            <label id="lbl-form-links" class="block text-sm font-medium text-gray-700 mb-1">الروابط المستهدفة / المشكلة <span class="text-red-500">*</span></label>
                             <input type="text" name="الروابط_المستهدفة" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-corporate-500 focus:border-corporate-500 outline-none transition-colors text-left text-sm" dir="ltr" placeholder="https://...">
-                            <p class="text-xs text-gray-500 mt-1">يرجى وضع الرابط المسيء ليقوم فريقنا بعمل تدقيق للثغرات التقنية (DMCA/TOS).</p>
+                            <p id="lbl-form-links-hint" class="text-xs text-gray-500 mt-1">يرجى وضع الرابط المسيء ليقوم فريقنا بعمل تدقيق للثغرات التقنية (DMCA/TOS).</p>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">تفاصيل إضافية</label>
-                            <textarea name="تفاصيل_إضافية" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-corporate-500 focus:border-corporate-500 outline-none transition-colors text-sm" placeholder="صف المشكلة باختصار..."></textarea>
+                            <label id="lbl-form-details" class="block text-sm font-medium text-gray-700 mb-1">تفاصيل إضافية</label>
+                            <textarea name="تفاصيل_إضافية" id="input-details" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-corporate-500 focus:border-corporate-500 outline-none transition-colors text-sm" placeholder="صف المشكلة باختصار..."></textarea>
                         </div>
 
-                        <button type="submit" class="w-full bg-corporate-900 hover:bg-corporate-800 text-white font-bold py-3 px-4 rounded-md transition-colors flex justify-center items-center gap-2 text-base">
+                        <button type="submit" id="form-submit-btn" class="w-full bg-corporate-900 hover:bg-corporate-800 text-white font-bold py-3 px-4 rounded-md transition-colors flex justify-center items-center gap-2 text-base">
                             <span>إرسال الطلب الآمن</span>
                             <i data-lucide="send" class="w-4 h-4"></i>
                         </button>
@@ -318,11 +328,11 @@
                             <circle cx="35" cy="55" r="5" fill="#ffffff"/>
                             <circle cx="55" cy="30" r="5" fill="#d4af37"/>
                         </g>
-                        <text x="150" y="135" font-family="'Tajawal', sans-serif" font-weight="800" font-size="44" fill="#ffffff" text-anchor="middle">حماية الصيت</text>
+                        <text x="150" y="135" id="footer-logo-ar" font-family="'Tajawal', sans-serif" font-weight="800" font-size="44" fill="#ffffff" text-anchor="middle">حماية الصيت</text>
                         <text x="150" y="175" font-family="'Montserrat', sans-serif" font-weight="800" font-size="25" fill="#d4af37" letter-spacing="2" text-anchor="middle">PRESTIGEGUARD</text>
                     </svg>
                 </div>
-                <div class="text-gray-400 text-sm">
+                <div class="text-gray-400 text-sm" id="footer-rights">
                     &copy; 2026 Prestigeguard (حماية الصيت). جميع الحقوق محفوظة.
                 </div>
             </div>
@@ -330,6 +340,233 @@
     </footer>
 
     <script>
+        // Translations Object
+        const translations = {
+            ar: {
+                dir: "rtl",
+                title: "حماية الصيت | Prestigeguard - إدارة المخاطر الرقمية",
+                logoText: "حماية الصيت",
+                logoSub: "نحمي صيتك ونبني حضورك الرقمي",
+                navHome: "الرئيسية",
+                navServices: "خدماتنا",
+                navMethodology: "منهجيتنا",
+                navArticles: "المقالات",
+                navCta: "احصل على استشارة سرية",
+                heroBadge: "الوكالة الرائدة في إدارة المخاطر الرقمية",
+                heroTitle: 'نحمي <span class="text-gold-400">صيتك</span><br/> ونبني حضورك الرقمي',
+                heroDesc: "نقدم حلولاً تقنية متقدمة للقيادات والشركات لإزالة المحتوى المسيء، وتأمين السمعة الرقمية، والسيطرة التامة على نتائج محركات البحث بسرية مطلقة. بدون تعقيدات قانونية.",
+                heroCta1: "طلب تدقيق مجاني وسري",
+                heroCta2: "اكتشف حلولنا التقنية",
+                feat1Title: "سرية تامة (NDA)",
+                feat1Desc: "نوقع اتفاقية عدم إفشاء المعلومات قبل مناقشة أي تفاصيل.",
+                feat2Title: "الدفع مقابل الإزالة",
+                feat2Desc: "نموذج عمل مبني على النتائج. لا رسوم مخفية دون إنجاز.",
+                feat3Title: "حلول تقنية لا قانونية",
+                feat3Desc: "نستخدم أدوات استخبارات الويب لحذف المحتوى دون لفت الانتباه.",
+                servicesBadge: "مجالات التخصص",
+                servicesTitle: "هندسة السمعة عبر الإنترنت",
+                servicesDesc: "نتعامل مع الأزمات الرقمية كمهندسي بيانات، ليس فقط كمستشارين. نستهدف جذور المشكلة في خوادم الاستضافة وخوارزميات البحث.",
+                srv1Title: "الإزالة الاستراتيجية للمحتوى",
+                srv1Desc: "نجري عمليات تدقيق سيبراني شاملة للروابط المسيئة لرصد أي خروقات للسياسات الرقمية أو بروتوكولات الاستضافة، مما يتيح لنا تقديم مذكرات تقنية حازمة تؤدي إلى إزالة المحتوى من الجذور.",
+                srv2Title: "هندسة الخوارزميات (Suppression)",
+                srv2Desc: "نطبق استراتيجيات خوارزمية متقدمة لإعادة هيكلة نتائج البحث. نقوم بتعزيز الأصول الرقمية الإيجابية ودفع المحتوى السلبي بعيداً عن الظهور، مما يضمن سيطرتك التامة على الانطباع الأول.",
+                srv3Title: "الرصد الاستباقي للأزمات",
+                srv3Desc: "نعتمد على أنظمة إنذار مبكر لتحليل البيانات المفتوحة (OSINT) على مدار الساعة. نقوم برصد أي إشارات سلبية أو محتوى يستهدف علامتك التجارية فور نشره، مما يتيح لنا احتواء الأزمة قبل تحولها لتريند عام.",
+                methBadge: "طريقة العمل",
+                methTitle: "لماذا تختار الحلول التقنية على النزاعات القانونية؟",
+                methDesc: 'غالباً ما تؤدي الدعاوى القضائية إلى ما يُعرف بـ "تأثير سترايسند" (The Streisand Effect)، حيث يجذب التهديد القانوني انتباهاً إعلامياً أكبر للمشكلة الأساسية.',
+                methItem1Title: "عمليات صامتة",
+                methItem1Desc: "نحن نعمل في الخلفية دون لفت الانتباه أو استفزاز الناشر الأصلي.",
+                methItem2Title: "تكلفة مدروسة ومضمونة",
+                methItem2Desc: "أنت لا تدفع أتعاب محاماة مفتوحة، بل تدفع مقابل النتيجة التقنية الناجحة.",
+                methItem3Title: "سرعة التنفيذ",
+                methItem3Desc: "الطلبات التقنية للمنصات (مثل شكاوى الخصوصية لـ Google) تُعالج أسرع بكثير من قاعات المحاكم.",
+                contactSidebarTitle: "تواصل معنا بسرية",
+                contactSidebarDesc: "كل المراسلات مشفرة وتخضع لاتفاقية عدم الإفشاء (NDA) منذ اللحظة الأولى.",
+                lblEmail: "البريد الإلكتروني للإدارة",
+                lblPhone: "خط الاستشارات الآمن",
+                lblHq: "المقر الرئيسي",
+                contactAddress: "اسطنبول - تركيا - باغجيلار - شارع 2039",
+                formTitle: "طلب تدقيق رقمي",
+                lblFormName: "الاسم أو اللقب (اختياري)",
+                inputNamePlaceholder: "للحفاظ على السرية، يمكنك استخدام لقب",
+                lblFormEmail: "البريد الإلكتروني",
+                lblFormLinks: "الروابط المستهدفة / المشكلة",
+                lblFormLinksHint: "يرجى وضع الرابط المسيء ليقوم فريقنا بعمل تدقيق للثغرات التقنية (DMCA/TOS).",
+                lblFormDetails: "تفاصيل إضافية",
+                inputDetailsPlaceholder: "صف المشكلة باختصار...",
+                formSubmitBtn: "إرسال الطلب الآمن",
+                footerRights: "&copy; 2026 Prestigeguard (حماية الصيت). جميع الحقوق محفوظة."
+            },
+            en: {
+                dir: "ltr",
+                title: "PrestigeGuard | Digital Risk Management & Reputation Protection",
+                logoText: "PrestigeGuard",
+                logoSub: "Securing Your Reputation & Building Your Digital Presence",
+                navHome: "Home",
+                navServices: "Our Services",
+                navMethodology: "Methodology",
+                navArticles: "Articles",
+                navCta: "Get Confidential Consultation",
+                heroBadge: "The Leading Agency in Digital Risk Management",
+                heroTitle: 'We protect your <span class="text-gold-400">reputation</span><br/> and build your digital presence',
+                heroDesc: "We provide advanced technical solutions for leaders and corporations to remove negative content, secure digital reputation, and seize complete control over search results with absolute confidentiality. Free from legal complications.",
+                heroCta1: "Request Free Confidential Audit",
+                heroCta2: "Discover Technical Solutions",
+                feat1Title: "Absolute NDA Confidentiality",
+                feat1Desc: "We sign a non-disclosure agreement before discussing any details.",
+                feat2Title: "Pay-on-Success Model",
+                feat2Desc: "A results-based framework. No hidden fees without delivery.",
+                feat3Title: "Technical, Non-Legal Solutions",
+                feat3Desc: "We employ web intelligence tools to drop target links silently.",
+                servicesBadge: "Areas of Expertise",
+                servicesTitle: "Online Reputation Engineering",
+                servicesDesc: "We handle digital crises as data engineers, not just advisors. We target issues at host servers and search algorithms directly.",
+                srv1Title: "Strategic Content Removal",
+                srv1Desc: "We conduct exhaustive cyber audits on abusive links to track structural and policy breaches, enabling us to execute hard technical requests for core removal.",
+                srv2Title: "Algorithmic Suppression",
+                srv2Desc: "We apply advanced algorithmic patterns to restructure search engine result pages, elevating positive assets and pushing negative links way out of sight.",
+                srv3Title: "Proactive Crisis Monitoring",
+                srv3Desc: "Utilizing 24/7 OSINT early-alert mechanisms, we track negative mentions and narrative attacks targeting your brand name, containing the fire before it trends.",
+                methBadge: "Work Framework",
+                methTitle: "Why Prefer Technical Solutions Over Court Disputes?",
+                methDesc: 'Lawsuits often trigger "The Streisand Effect," where legal warnings escalate public attention, ultimately magnifying the core problem instead of resolving it.',
+                methItem1Title: "Silent Operations",
+                methItem1Desc: "We operate completely behind the curtains without provoking the original publisher.",
+                methItem2Title: "Controlled, Guaranteed Budgets",
+                methItem2Desc: "You do not fund open-ended legal hours; you pay strictly for the successfully delivered outcome.",
+                methItem3Title: "Rapid Turnaround",
+                methItem3Desc: "Technical platforms (like Google Privacy/TOS requests) address queries exponentially faster than legal courts.",
+                contactSidebarTitle: "Reach Out Securely",
+                contactSidebarDesc: "All communications are highly encrypted and protected under NDA from moment one.",
+                lblEmail: "Administrative Email",
+                lblPhone: "Secure Advisory Line",
+                lblHq: "Headquarters",
+                contactAddress: "Istanbul - Turkey - Bagcilar - Street 2039",
+                formTitle: "Confidential Digital Audit Request",
+                lblFormName: "Name or Alias (Optional)",
+                inputNamePlaceholder: "For maximum secrecy, you can use an alias",
+                lblFormEmail: "Email Address",
+                lblFormLinks: "Target Links / Issue URL",
+                lblFormLinksHint: "Please supply the harmful links so our team can scan for system policy and TOS loopholes.",
+                lblFormDetails: "Additional Details",
+                inputDetailsPlaceholder: "Briefly describe the challenge you're facing...",
+                formSubmitBtn: "Submit Secure Request",
+                footerRights: "&copy; 2026 Prestigeguard. All Rights Reserved."
+            }
+        };
+
+        // Switch Language Function
+        function setLanguage(lang) {
+            localStorage.setItem('prestige_lang', lang);
+            const data = translations[lang];
+            
+            // Set HTML Direction
+            const htmlRoot = document.getElementById('html-root');
+            htmlRoot.setAttribute('dir', data.dir);
+            htmlRoot.setAttribute('lang', lang);
+
+            // Set text directions & alignments dynamically based on direction
+            if (lang === 'en') {
+                htmlRoot.classList.remove('font-sans');
+                // Adjust English layouts
+                document.querySelectorAll('.text-start').forEach(el => { el.style.textAlign = 'left'; });
+            } else {
+                htmlRoot.classList.add('font-sans');
+                document.querySelectorAll('.text-start').forEach(el => { el.style.textAlign = 'right'; });
+            }
+
+            // Update DOM Elements
+            document.getElementById('site-title').innerText = data.title;
+            document.getElementById('logo-text-ar').innerText = data.logoText;
+            document.getElementById('logo-sub-ar').innerText = data.logoSub;
+            
+            document.getElementById('nav-home').innerText = data.navHome;
+            document.getElementById('nav-services').innerText = data.navServices;
+            document.getElementById('nav-methodology').innerText = data.navMethodology;
+            document.getElementById('nav-articles').innerText = data.navArticles;
+            document.getElementById('nav-cta').innerText = data.navCta;
+
+            document.getElementById('mob-nav-home').innerText = data.navHome;
+            document.getElementById('mob-nav-services').innerText = data.navServices;
+            document.getElementById('mob-nav-methodology').innerText = data.navMethodology;
+            document.getElementById('mob-nav-articles').innerText = data.navArticles;
+            document.getElementById('mob-nav-cta').innerText = data.navCta;
+
+            document.getElementById('hero-badge').innerText = data.heroBadge;
+            document.getElementById('hero-title').innerHTML = data.heroTitle;
+            document.getElementById('hero-desc').innerText = data.heroDesc;
+            document.getElementById('hero-cta-1').querySelector('span').innerText = data.heroCta1;
+            document.getElementById('hero-cta-2').innerText = data.heroCta2;
+
+            document.getElementById('feat-1-title').innerText = data.feat1Title;
+            document.getElementById('feat-1-desc').innerText = data.feat1Desc;
+            document.getElementById('feat-2-title').innerText = data.feat2Title;
+            document.getElementById('feat-2-desc').innerText = data.feat2Desc;
+            document.getElementById('feat-3-title').innerText = data.feat3Title;
+            document.getElementById('feat-3-desc').innerText = data.feat3Desc;
+
+            document.getElementById('services-badge').innerText = data.servicesBadge;
+            document.getElementById('services-title').innerText = data.servicesTitle;
+            document.getElementById('services-desc').innerText = data.servicesDesc;
+
+            document.getElementById('srv-1-title').innerText = data.srv1Title;
+            document.getElementById('srv-1-desc').innerText = data.srv1Desc;
+            document.getElementById('srv-2-title').innerText = data.srv2Title;
+            document.getElementById('srv-2-desc').innerText = data.srv2Desc;
+            document.getElementById('srv-3-title').innerText = data.srv3Title;
+            document.getElementById('srv-3-desc').innerText = data.srv3Desc;
+
+            document.getElementById('meth-badge').innerText = data.methBadge;
+            document.getElementById('meth-title').innerText = data.methTitle;
+            document.getElementById('meth-desc').innerText = data.methDesc;
+
+            document.getElementById('meth-item-1-title').innerText = data.methItem1Title;
+            document.getElementById('meth-item-1-desc').innerText = data.methItem1Desc;
+            document.getElementById('meth-item-2-title').innerText = data.methItem2Title;
+            document.getElementById('meth-item-2-desc').innerText = data.methItem2Desc;
+            document.getElementById('meth-item-3-title').innerText = data.methItem3Title;
+            document.getElementById('meth-item-3-desc').innerText = data.methItem3Desc;
+
+            document.getElementById('contact-sidebar-title').innerText = data.contactSidebarTitle;
+            document.getElementById('contact-sidebar-desc').innerText = data.contactSidebarDesc;
+            document.getElementById('lbl-email').innerText = data.lblEmail;
+            document.getElementById('lbl-phone').innerText = data.lblPhone;
+            document.getElementById('lbl-hq').innerText = data.lblHq;
+            document.getElementById('contact-address').innerText = data.contactAddress;
+
+            document.getElementById('form-title').innerText = data.formTitle;
+            document.getElementById('lbl-form-name').innerText = data.lblFormName;
+            document.getElementById('input-name').placeholder = data.inputNamePlaceholder;
+            document.getElementById('lbl-form-email').innerHTML = `${data.lblFormEmail} <span class="text-red-500">*</span>`;
+            document.getElementById('lbl-form-links').innerHTML = `${data.lblFormLinks} <span class="text-red-500">*</span>`;
+            document.getElementById('lbl-form-links-hint').innerText = data.lblFormLinksHint;
+            document.getElementById('lbl-form-details').innerText = data.lblFormDetails;
+            document.getElementById('input-details').placeholder = data.inputDetailsPlaceholder;
+            document.getElementById('form-submit-btn').querySelector('span').innerText = data.formSubmitBtn;
+
+            document.getElementById('footer-logo-ar').innerText = data.logoText;
+            document.getElementById('footer-rights').innerHTML = data.footerRights;
+
+            // Update UI State of language switchers
+            const btnAr = document.getElementById('lang-btn-ar');
+            const btnEn = document.getElementById('lang-btn-en');
+            const mobBtnAr = document.getElementById('mobile-lang-btn-ar');
+            const mobBtnEn = document.getElementById('mobile-lang-btn-en');
+
+            if (lang === 'ar') {
+                btnAr.className = "px-2.5 py-1 text-xs font-bold rounded transition-all text-white bg-gold-500";
+                btnEn.className = "px-2.5 py-1 text-xs font-bold rounded transition-all text-gray-400 hover:text-white";
+                mobBtnAr.className = "px-2 py-0.5 text-xs font-bold rounded transition-all text-white bg-gold-500";
+                mobBtnEn.className = "px-2 py-0.5 text-xs font-bold rounded transition-all text-gray-400 hover:text-white";
+            } else {
+                btnAr.className = "px-2.5 py-1 text-xs font-bold rounded transition-all text-gray-400 hover:text-white";
+                btnEn.className = "px-2.5 py-1 text-xs font-bold rounded transition-all text-white bg-gold-500";
+                mobBtnAr.className = "px-2 py-0.5 text-xs font-bold rounded transition-all text-gray-400 hover:text-white";
+                mobBtnEn.className = "px-2 py-0.5 text-xs font-bold rounded transition-all text-white bg-gold-500";
+            }
+        }
+
         // Initialize Lucide Icons
         lucide.createIcons();
 
@@ -347,9 +584,14 @@
                 menu.classList.add('hidden');
                 icon.setAttribute('data-lucide', 'menu');
             }
-            // Re-render icon switch
             lucide.createIcons();
         }
+
+        // Load Preferred Language
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('prestige_lang') || 'ar';
+            setLanguage(savedLang);
+        });
     </script>
 </body>
 </html>
