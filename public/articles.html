@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="html-root">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>المقالات والتقارير | Prestigeguard - إدارة المخاطر الرقمية</title>
+    <title id="site-title">المقالات والتقارير | Prestigeguard - إدارة المخاطر الرقمية</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,19 +54,29 @@
                                 <path d="M40 0 L80 15 L80 45 C80 65 65 80 40 90 C15 80 0 65 0 45 L0 15 Z" fill="none" stroke="#d4af37" stroke-width="5" stroke-linejoin="round"/>
                                 <path d="M25 45 L35 55 L55 30" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
                             </g>
-                            <text x="150" y="135" font-family="'Tajawal', sans-serif" font-weight="800" font-size="44" fill="#ffffff" text-anchor="middle">حماية الصيت</text>
+                            <text x="150" y="135" id="logo-text-ar" font-family="'Tajawal', sans-serif" font-weight="800" font-size="44" fill="#ffffff" text-anchor="middle">حماية الصيت</text>
                             <text x="150" y="175" font-family="'Montserrat', sans-serif" font-weight="800" font-size="25" fill="#d4af37" letter-spacing="2" text-anchor="middle">PRESTIGEGUARDS</text>
                         </svg>
                     </a>
                 </div>
                 
                 <div class="hidden md:flex items-center gap-8 lg:gap-10 mr-auto">
-                    <a href="/" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gold-400 pb-1 text-sm font-medium transition-all">الرئيسية</a>
-                    <a href="javascript:void(0)" onclick="switchToListView()" class="text-white border-b-2 border-gold-400 pb-1 text-sm font-medium transition-all">المقالات</a>
-                    <button onclick="toggleAdminPanel()" class="text-gray-400 hover:text-gold-400 text-xs font-medium border border-gray-700 rounded px-2 py-1 transition-colors">لوحة الإدارة 🔐</button>
+                    <a href="/" id="nav-home" class="text-gray-300 hover:text-white hover:border-b-2 hover:border-gold-400 pb-1 text-sm font-medium transition-all">الرئيسية</a>
+                    <a href="javascript:void(0)" id="nav-articles" onclick="switchToListView()" class="text-white border-b-2 border-gold-400 pb-1 text-sm font-medium transition-all">المقالات</a>
+                    
+                    <div class="flex items-center bg-corporate-800 rounded-lg p-1 border border-corporate-500/30">
+                        <button onclick="setLanguage('ar')" id="lang-btn-ar" class="px-2.5 py-1 text-xs font-bold rounded transition-all text-white bg-gold-500">AR</button>
+                        <button onclick="setLanguage('en')" id="lang-btn-en" class="px-2.5 py-1 text-xs font-bold rounded transition-all text-gray-400 hover:text-white">EN</button>
+                    </div>
+
+                    <button onclick="toggleAdminPanel()" id="nav-admin" class="text-gray-400 hover:text-gold-400 text-xs font-medium border border-gray-700 rounded px-2 py-1 transition-colors">لوحة الإدارة 🔐</button>
                 </div>
 
-                <div class="flex items-center md:hidden">
+                <div class="flex items-center md:hidden gap-3">
+                    <div class="flex items-center bg-corporate-800 rounded-lg p-1 border border-corporate-500/30">
+                        <button onclick="setLanguage('ar')" id="mobile-lang-btn-ar" class="px-2 py-0.5 text-xs font-bold rounded transition-all text-white bg-gold-500">AR</button>
+                        <button onclick="setLanguage('en')" id="mobile-lang-btn-en" class="px-2 py-0.5 text-xs font-bold rounded transition-all text-gray-400 hover:text-white">EN</button>
+                    </div>
                     <button onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white focus:outline-none p-2">
                         <i data-lucide="menu" id="menu-icon" class="w-6 h-6"></i>
                     </button>
@@ -75,30 +85,30 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-corporate-900 border-t border-corporate-800 px-4 pt-2 pb-6 space-y-3 transition-all">
-            <a href="/" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2 text-base font-medium border-b border-gray-800/50">الرئيسية</a>
-            <a href="javascript:void(0)" onclick="switchToListView(); toggleMobileMenu();" class="block text-gold-400 py-2 text-base font-bold border-b border-gray-800/50">المقالات</a>
-            <button onclick="toggleAdminPanel(); toggleMobileMenu();" class="w-full text-right text-gray-400 hover:text-gold-400 text-base font-medium py-2 block border-b border-gray-800/50">لوحة الإدارة 🔐</button>
+            <a href="/" id="mob-nav-home" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-white py-2 text-base font-medium border-b border-gray-800/50">الرئيسية</a>
+            <a href="javascript:void(0)" id="mob-nav-articles" onclick="switchToListView(); toggleMobileMenu();" class="block text-gold-400 py-2 text-base font-bold border-b border-gray-800/50">المقالات</a>
+            <button onclick="toggleAdminPanel(); toggleMobileMenu();" id="mob-nav-admin" class="w-full text-right text-gray-400 hover:text-gold-400 text-base font-medium py-2 block border-b border-gray-800/50">لوحة الإدارة 🔐</button>
         </div>
     </nav>
 
     <div id="admin-panel" class="hidden pt-28 md:pt-36 bg-corporate-100 border-b-2 border-gold-400 px-4 sm:px-6 lg:px-8 py-8 transition-all">
         <div class="max-w-3xl mx-auto bg-white rounded-xl p-5 md:p-8 shadow-xl border border-gray-200">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl md:text-2xl font-bold text-corporate-900 flex items-center gap-2">
+                <h2 id="adm-panel-title" class="text-xl md:text-2xl font-bold text-corporate-900 flex items-center gap-2">
                     <i data-lucide="plus-circle" class="text-gold-500"></i> نشر مقال جديد (متصل بقاعدة البيانات)
                 </h2>
-                <button onclick="logoutAdmin()" class="text-red-500 hover:text-red-700 text-sm font-medium">تسجيل الخروج 🚪</button>
+                <button onclick="logoutAdmin()" id="adm-logout" class="text-red-500 hover:text-red-700 text-sm font-medium">تسجيل الخروج 🚪</button>
             </div>
             
             <div class="space-y-4">
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">عنوان المقال</label>
+                    <label id="lbl-adm-title" class="block text-sm font-bold text-gray-700 mb-1">عنوان المقال</label>
                     <input type="text" id="post-title" dir="auto" placeholder="أدخل عنوان المقال هنا..." class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none text-base text-start">
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">تصنيف المقال</label>
+                        <label id="lbl-adm-cat" class="block text-sm font-bold text-gray-700 mb-1">تصنيف المقال</label>
                         <select id="post-category" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none">
                             <option value="إدارة الأزمات">إدارة الأزمات</option>
                             <option value="هندسة الخوارزميات">هندسة الخوارزميات</option>
@@ -107,7 +117,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-1">أيقونة المقال المرئية</label>
+                        <label id="lbl-adm-icon" class="block text-sm font-bold text-gray-700 mb-1">أيقونة المقال المرئية</label>
                         <select id="post-icon" class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none">
                             <option value="shield-alert">Shield (حماية وأزمات)</option>
                             <option value="search">Search (محركات بحث وSEO)</option>
@@ -119,22 +129,22 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">نبذة مختصرة (تظهر في البطاقة الخارجية)</label>
+                    <label id="lbl-adm-excerpt" class="block text-sm font-bold text-gray-700 mb-1">نبذة مختصرة (تظهر في البطاقة الخارجية)</label>
                     <input type="text" id="post-excerpt" dir="auto" placeholder="اكتب سطرين كملخص سريع للمقال..." class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none text-sm text-start">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-bold text-gray-700 mb-1">نص المقال الكامل</label>
+                    <label id="lbl-adm-body" class="block text-sm font-bold text-gray-700 mb-1">نص المقال الكامل</label>
                     <textarea id="post-body" dir="auto" rows="10" placeholder="اكتب مقالك هنا بالكامل..." class="w-full border p-3 rounded-lg focus:ring-2 focus:ring-gold-400 outline-none text-base leading-relaxed text-start"></textarea>
                 </div>
 
-                <button onclick="saveNewArticle()" class="w-full bg-corporate-800 text-white hover:bg-corporate-900 font-bold p-4 rounded-lg transition-colors flex items-center justify-center gap-2 text-base md:text-lg shadow-md">
-                    <i data-lucide="send" class="w-5 h-5 text-gold-400"></i> نشر المقال على الموقع فوراً
+                <button onclick="saveNewArticle()" id="adm-submit" class="w-full bg-corporate-800 text-white hover:bg-corporate-900 font-bold p-4 rounded-lg transition-colors flex items-center justify-center gap-2 text-base md:text-lg shadow-md">
+                    <i data-lucide="send" class="w-5 h-5 text-gold-400"></i> <span id="adm-submit-text">نشر المقال على الموقع فوراً</span>
                 </button>
             </div>
 
             <div class="mt-8 pt-6 border-t-2 border-gray-100">
-                <h3 class="text-lg font-bold text-corporate-900 mb-4 flex items-center gap-2">
+                <h3 id="adm-manage-title" class="text-lg font-bold text-corporate-900 mb-4 flex items-center gap-2">
                     <i data-lucide="settings" class="text-gray-500"></i> إدارة وحذف المقالات الحالية السحابية
                 </h3>
                 <div id="admin-articles-list" class="space-y-3 max-h-64 overflow-y-auto pr-1"></div>
@@ -147,13 +157,13 @@
         <section class="bg-corporate-900 pt-32 md:pt-44 pb-16 md:pb-20 text-center relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-corporate-900 opacity-50"></div>
             <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <span class="inline-block py-1 px-3 rounded-full bg-corporate-800 border border-corporate-500 text-gold-400 text-sm font-medium mb-4">
+                <span id="hub-badge" class="inline-block py-1 px-3 rounded-full bg-corporate-800 border border-corporate-500 text-gold-400 text-sm font-medium mb-4">
                     المدونة الرقمية والأبحاث
                 </span>
-                <h1 class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
+                <h1 id="hub-title" class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
                     دليلك المعرفي لـ <span class="text-gold-400">حماية السمعة الرقمية</span>
                 </h1>
-                <p class="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base md:text-lg font-light">
+                <p id="hub-desc" class="max-w-2xl mx-auto text-gray-400 text-sm sm:text-base md:text-lg font-light">
                     مقالات متخصصة، دراسات حالة، ونصائح أمنية من خبراء السيطرة الخوارزمية واستخبارات الويب.
                 </p>
             </div>
@@ -173,15 +183,15 @@
                 <div class="text-gray-400 text-xs sm:text-sm flex justify-center items-center gap-2">
                     <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-4 h-4"></i><span id="read-date"></span></span>
                     <span>•</span>
-                    <span>بقلم فريق البحوث التقنية</span>
+                    <span id="read-author">بقلم فريق البحوث التقنية</span>
                 </div>
             </div>
         </header>
 
         <main class="max-w-3xl mx-auto px-4 py-12 md:py-16">
-            <button onclick="switchToListView()" class="text-gold-500 hover:text-corporate-800 font-medium text-sm inline-flex items-center gap-1 mb-6 transition-colors group">
+            <button onclick="switchToListView()" id="btn-back-hub" class="text-gold-500 hover:text-corporate-800 font-medium text-sm inline-flex items-center gap-1 mb-6 transition-colors group">
                 <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover:translate-x-1 transition-transform"></i>
-                العودة إلى صفحة المقالات الرئيسية
+                <span>العودة إلى صفحة المقالات الرئيسية</span>
             </button>
 
             <article id="read-body" class="article-content bg-white rounded-2xl p-5 sm:p-8 md:p-12 shadow-sm border border-gray-100">
@@ -190,12 +200,12 @@
             <div class="mt-8 bg-corporate-900 border-2 border-gold-400 rounded-2xl p-6 sm:p-8 text-center shadow-xl relative overflow-hidden">
                 <div class="absolute inset-0 bg-radial-gradient from-corporate-800 to-corporate-900 opacity-30"></div>
                 <div class="relative z-10 space-y-4">
-                    <h3 class="text-xl sm:text-2xl font-bold text-white">هل تواجه أزمة رقمية أو هجوماً يهدد سمعتك؟</h3>
-                    <p class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto">تواصل معنا الآن بشكل فوري للحصول على تحليل تقني واستجابة سيبرانية مباشرة لحظر التهديدات وحذف الإساءات خوارزمياً.</p>
+                    <h3 id="read-cta-title" class="text-xl sm:text-2xl font-bold text-white">هل تواجه أزمة رقمية أو هجوماً يهدد سمعتك؟</h3>
+                    <p id="read-cta-desc" class="text-gray-300 text-sm sm:text-base max-w-xl mx-auto">تواصل معنا الآن بشكل فوري للحصول على تحليل تقني واستجابة سيبرانية مباشرة لحظر التهديدات وحذف الإساءات خوارزمياً.</p>
                     <div class="pt-2">
-                        <a href="/#contact" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-500 text-corporate-900 font-extrabold px-8 py-4 rounded-xl shadow-lg hover:shadow-gold-400/20 transform hover:-translate-y-0.5 transition-all text-base sm:text-lg">
+                        <a href="/#contact" id="read-cta-btn" class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-gold-500 to-gold-400 hover:from-gold-400 hover:to-gold-500 text-corporate-900 font-extrabold px-8 py-4 rounded-xl shadow-lg hover:shadow-gold-400/20 transform hover:-translate-y-0.5 transition-all text-base sm:text-lg">
                             <i data-lucide="shield-alert" class="w-5 h-5"></i>
-                            احصل على استشارة سرية عاجلة
+                            <span>احصل على استشارة سرية عاجلة</span>
                         </a>
                     </div>
                 </div>
@@ -205,14 +215,144 @@
 
     <footer class="bg-corporate-900 border-t border-corporate-800 pt-12 pb-8 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-400 text-sm">
+            <p class="text-gray-400 text-sm" id="footer-rights">
                 &copy; 2026 Prestigeguard (حماية الصيت). جميع الحقوق محفوظة.
             </p>
         </div>
     </footer>
 
     <script>
-        // تحديد مسارات الاتصال بالسيرفر تلقائياً
+        // Language Translations Object (The articles list themselves stay in Arabic as requested)
+        const translations = {
+            ar: {
+                dir: "rtl",
+                title: "المقالات والتقارير | Prestigeguard - إدارة المخاطر الرقمية",
+                logoText: "حماية الصيت",
+                navHome: "الرئيسية",
+                navArticles: "المقالات",
+                navAdmin: "لوحة الإدارة 🔐",
+                hubBadge: "المدونة الرقمية والأبحاث",
+                hubTitle: 'دليلك المعرفي لـ <span class="text-gold-400">حماية السمعة الرقمية</span>',
+                hubDesc: "مقالات متخصصة، دراسات حالة، ونصائح أمنية من خبراء السيطرة الخوارزمية واستخبارات الويب.",
+                readAuthor: "بقلم فريق البحوث التقنية",
+                btnBackHub: "العودة إلى صفحة المقالات الرئيسية",
+                readCtaTitle: "هل تواجه أزمة رقمية أو هجوماً يهدد سمعتك؟",
+                readCtaDesc: "تواصل معنا الآن بشكل فوري للحصول على تحليل تقني واستجابة سيبرانية مباشرة لحظر التهديدات وحذف الإساءات خوارزمياً.",
+                readCtaBtn: "احصل على استشارة سرية عاجلة",
+                footerRights: "&copy; 2026 Prestigeguard (حماية الصيت). جميع الحقوق محفوظة.",
+                adminTitle: "نشر مقال جديد (متصل بقاعدة البيانات)",
+                adminLogout: "تسجيل الخروج 🚪",
+                lblAdmTitle: "عنوان المقال",
+                lblAdmCat: "تصنيف المقال",
+                lblAdmIcon: "أيقونة المقال المرئية",
+                lblAdmExcerpt: "نبذة مختصرة (تظهر في البطاقة الخارجية)",
+                lblAdmBody: "نص المقال الكامل",
+                admSubmitText: "نشر المقال على الموقع فوراً",
+                admManageTitle: "إدارة وحذف المقالات الحالية السحابية",
+                readMore: "اقرأ المقال كاملاً"
+            },
+            en: {
+                dir: "ltr",
+                title: "Articles & Reports | PrestigeGuard - Digital Risk Management",
+                logoText: "PrestigeGuard",
+                navHome: "Home",
+                navArticles: "Articles",
+                navAdmin: "Admin Panel 🔐",
+                hubBadge: "Digital Blog & Intelligence Reports",
+                hubTitle: 'Your Guide to <span class="text-gold-400">Reputation Protection</span>',
+                hubDesc: "Specialized insights, case studies, and security tips from algorithmic control and web intelligence experts.",
+                readAuthor: "By the Technical Research Team",
+                btnBackHub: "Return to Articles Hub",
+                readCtaTitle: "Facing a digital crisis or a threat to your reputation?",
+                readCtaDesc: "Reach out immediately for a technical analysis and a direct cyber response to algorithmic drops.",
+                readCtaBtn: "Get an Urgent Confidential Consultation",
+                footerRights: "&copy; 2026 Prestigeguard. All Rights Reserved.",
+                adminTitle: "Publish New Article (Cloud Connected)",
+                adminLogout: "Logout 🚪",
+                lblAdmTitle: "Article Title",
+                lblAdmCat: "Category",
+                lblAdmIcon: "Visual Icon",
+                lblAdmExcerpt: "Short Excerpt (Shows on card preview)",
+                lblAdmBody: "Full Article Content",
+                admSubmitText: "Publish Article on Website Instantly",
+                admManageTitle: "Manage & Delete Database Articles",
+                readMore: "Read full article"
+            }
+        };
+
+        // Switch Language Function
+        function setLanguage(lang) {
+            localStorage.setItem('prestige_lang', lang);
+            const data = translations[lang];
+
+            const htmlRoot = document.getElementById('html-root');
+            htmlRoot.setAttribute('dir', data.dir);
+            htmlRoot.setAttribute('lang', lang);
+
+            if (lang === 'en') {
+                htmlRoot.classList.remove('font-sans');
+                document.querySelectorAll('.text-start').forEach(el => { el.style.textAlign = 'left'; });
+            } else {
+                htmlRoot.classList.add('font-sans');
+                document.querySelectorAll('.text-start').forEach(el => { el.style.textAlign = 'right'; });
+            }
+
+            // Update DOM Elements
+            document.getElementById('site-title').innerText = data.title;
+            document.getElementById('logo-text-ar').innerText = data.logoText;
+            document.getElementById('nav-home').innerText = data.navHome;
+            document.getElementById('nav-articles').innerText = data.navArticles;
+            document.getElementById('nav-admin').innerText = data.navAdmin;
+
+            document.getElementById('mob-nav-home').innerText = data.navHome;
+            document.getElementById('mob-nav-articles').innerText = data.navArticles;
+            document.getElementById('mob-nav-admin').innerText = data.navAdmin;
+
+            document.getElementById('hub-badge').innerText = data.hubBadge;
+            document.getElementById('hub-title').innerHTML = data.hubTitle;
+            document.getElementById('hub-desc').innerText = data.hubDesc;
+
+            document.getElementById('read-author').innerText = data.readAuthor;
+            document.getElementById('btn-back-hub').querySelector('span').innerText = data.btnBackHub;
+            document.getElementById('read-cta-title').innerText = data.readCtaTitle;
+            document.getElementById('read-cta-desc').innerText = data.readCtaDesc;
+            document.getElementById('read-cta-btn').querySelector('span').innerText = data.readCtaBtn;
+
+            document.getElementById('footer-rights').innerHTML = data.footerRights;
+
+            // Admin panel translations
+            document.getElementById('adm-panel-title').innerHTML = `<i data-lucide="plus-circle" class="text-gold-500"></i> ${data.adminTitle}`;
+            document.getElementById('adm-logout').innerText = data.adminLogout;
+            document.getElementById('lbl-adm-title').innerText = data.lblAdmTitle;
+            document.getElementById('lbl-adm-cat').innerText = data.lblAdmCat;
+            document.getElementById('lbl-adm-icon').innerText = data.lblAdmIcon;
+            document.getElementById('lbl-adm-excerpt').innerText = data.lblAdmExcerpt;
+            document.getElementById('lbl-adm-body').innerText = data.lblAdmBody;
+            document.getElementById('adm-submit-text').innerText = data.admSubmitText;
+            document.getElementById('adm-manage-title').innerHTML = `<i data-lucide="settings" class="text-gray-500"></i> ${data.admManageTitle}`;
+
+            // Buttons highlight
+            const btnAr = document.getElementById('lang-btn-ar');
+            const btnEn = document.getElementById('lang-btn-en');
+            const mobBtnAr = document.getElementById('mobile-lang-btn-ar');
+            const mobBtnEn = document.getElementById('mobile-lang-btn-en');
+
+            if (lang === 'ar') {
+                btnAr.className = "px-2.5 py-1 text-xs font-bold rounded transition-all text-white bg-gold-500";
+                btnEn.className = "px-2.5 py-1 text-xs font-bold rounded transition-all text-gray-400 hover:text-white";
+                mobBtnAr.className = "px-2 py-0.5 text-xs font-bold rounded transition-all text-white bg-gold-500";
+                mobBtnEn.className = "px-2 py-0.5 text-xs font-bold rounded transition-all text-gray-400 hover:text-white";
+            } else {
+                btnAr.className = "px-2.5 py-1 text-xs font-bold rounded transition-all text-gray-400 hover:text-white";
+                btnEn.className = "px-2.5 py-1 text-xs font-bold rounded transition-all text-white bg-gold-500";
+                mobBtnAr.className = "px-2 py-0.5 text-xs font-bold rounded transition-all text-gray-400 hover:text-white";
+                mobBtnEn.className = "px-2 py-0.5 text-xs font-bold rounded transition-all text-white bg-gold-500";
+            }
+
+            renderArticlesGrid();
+            lucide.createIcons();
+        }
+
         const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
             ? 'http://localhost:3000'
             : window.location.origin;
@@ -234,10 +374,9 @@
             lucide.createIcons();
         }
 
-        // جلب المقالات من قاعدة البيانات السحابية
         async function fetchArticles() {
             const grid = document.getElementById('articles-grid');
-            grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">جاري جلب آخر المقالات والبيانات من السحابة...</p>';
+            grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">جاري جلب المقالات...</p>';
             try {
                 const res = await fetch(`${API_BASE_URL}/api/articles`);
                 globalArticles = await res.json();
@@ -250,8 +389,6 @@
             }
         }
 
-        // بناء شبكة المقالات وإصلاح تداخل النصوص والعناصر البرمجية بجانب بعضها
-        // تم الاعتماد علىโครงสร้าง Flexbox النظيف مع مسافات (gaps) مرنة لمنع الالتصاق والتداخل الهيكلي
         function renderArticlesGrid() {
             const grid = document.getElementById('articles-grid');
             grid.innerHTML = '';
@@ -260,6 +397,9 @@
                 grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">لا توجد مقالات منشورة حالياً.</p>';
                 return;
             }
+
+            const currentLang = localStorage.getItem('prestige_lang') || 'ar';
+            const readMoreTxt = translations[currentLang].readMore;
 
             globalArticles.forEach(art => {
                 grid.innerHTML += `
@@ -283,7 +423,7 @@
                         </div>
                         <div class="p-5 pt-0">
                             <button onclick="openArticle('${art._id}')" class="text-corporate-800 font-bold text-xs sm:text-sm inline-flex items-center gap-1 hover:text-gold-500 transition-colors group text-right w-fit">
-                                اقرأ المقال كاملاً 
+                                ${readMoreTxt}
                                 <i data-lucide="arrow-left" class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform"></i>
                             </button>
                         </div>
@@ -293,7 +433,6 @@
             lucide.createIcons();
         }
 
-        // فتح المقال الفردي
         function openArticle(id) {
             const article = globalArticles.find(a => a._id === id);
             if (!article) return;
@@ -329,7 +468,6 @@
             lucide.createIcons();
         }
 
-        // رفع مقال جديد لقاعدة البيانات السحابية
         async function saveNewArticle() {
             const title = document.getElementById('post-title').value.trim();
             const category = document.getElementById('post-category').value;
@@ -370,7 +508,6 @@
             }
         }
 
-        // بناء قائمة إدارة وحذف المقالات داخل لوحة التحكم
         function renderAdminArticlesList() {
             const list = document.getElementById('admin-articles-list');
             list.innerHTML = '';
@@ -396,7 +533,6 @@
             lucide.createIcons();
         }
 
-        // حذف مقال نهائياً من السيرفر
         async function deleteArticle(id) {
             if(!confirm('هل أنت متأكد تماماً من رغبتك في حذف هذا المقال نهائياً من الموقع وقاعدة البيانات؟')) return;
 
@@ -416,7 +552,6 @@
             }
         }
 
-        // فتح لوحة الإدارة والتحقق المباشر من الهوية عبر الـ API الخاص بكلمة مرورك الجديدة المحددة
         async function toggleAdminPanel() {
             const panel = document.getElementById('admin-panel');
             if (panel.classList.contains('hidden')) {
@@ -424,7 +559,6 @@
                 if (!password) return;
 
                 try {
-                    // الاتصال بالتحقق الخلفي للمستخدم باستخدام بريدك المحدد وكلمة مرورك الجديدة ZokLok@2011
                     const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -436,12 +570,12 @@
                         localStorage.setItem('admin_token', data.token);
                         panel.classList.remove('hidden');
                         renderAdminArticlesList();
-                        alert('🔐 تم التحقق بنجاح! لوحة التحكم مهيأة بالكامل الآن ومجهّزة بأدوات الحذف والنشر.');
+                        alert('🔐 تم التحقق بنجاح!');
                     } else {
-                        alert('❌ كلمة مرور خاطئة! لا تملك صلاحية الوصول لقاعدة البيانات.');
+                        alert('❌ كلمة مرور خاطئة!');
                     }
                 } catch (err) {
-                    alert('حدث خطأ في الاتصال بالخادم أثناء التحقق من كلمة المرور.');
+                    alert('حدث خطأ في الاتصال بالخادم.');
                 }
             } else {
                 panel.classList.add('hidden');
@@ -454,65 +588,40 @@
         }
 
         function switchToListView() {
-
-            history.pushState(
-                {},
-                '',
-                '/articles'
-            );
-
+            history.pushState({}, '', '/articles');
             document.getElementById('reader-view').classList.add('hidden');
-
             document.getElementById('hub-view').classList.remove('hidden');
-
             window.scrollTo(0, 0);
         }
 
-        // بدء تشغيل البرنامج وجلب البيانات 
         window.addEventListener('load', async () => {
-
             await fetchArticles();
-
             const path = window.location.pathname;
-
             if(path.startsWith('/articles/')) {
-
                 const slug = path.split('/').pop();
-
-                const article = globalArticles.find(a =>
-                    String(a.articleNumber) === slug
-                );
-
+                const article = globalArticles.find(a => String(a.articleNumber) === slug);
                 if(article) {
                     openArticle(article._id);
                 }
             }
-
+            
+            // Set Initial Language from LocalStorage or default
+            const savedLang = localStorage.getItem('prestige_lang') || 'ar';
+            setLanguage(savedLang);
         });
 
-
         window.addEventListener('popstate', () => {
-
             const path = window.location.pathname;
-
             if(path === '/articles') {
-
                 document.getElementById('reader-view').classList.add('hidden');
                 document.getElementById('hub-view').classList.remove('hidden');
-
                 return;
             }
-
             const slug = path.split('/').pop();
-
-            const article = globalArticles.find(a =>
-                String(a.articleNumber) === slug
-            );
-
+            const article = globalArticles.find(a => String(a.articleNumber) === slug);
             if(article) {
                 openArticle(article._id);
             }
-
         });
 
         lucide.createIcons();
